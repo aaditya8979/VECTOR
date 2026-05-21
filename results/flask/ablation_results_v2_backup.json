@@ -1,0 +1,2098 @@
+{
+  "full": [
+    {
+      "task_id": "FT-001",
+      "mode": "full",
+      "passed_at_1": false,
+      "passed_at_5": false,
+      "iterations": 5,
+      "hallucination": false,
+      "tsdc_tiers": {
+        "codebase_rules": "rule1"
+      },
+      "layer_results": [
+        "type_check",
+        "type_check",
+        "type_check",
+        "type_check",
+        "type_check"
+      ],
+      "metrics": {
+        "M1_prompt_tokens": 818,
+        "M7_hallucination_rate": 0.0
+      }
+    },
+    {
+      "task_id": "FT-002",
+      "mode": "full",
+      "passed_at_1": true,
+      "passed_at_5": true,
+      "iterations": 1,
+      "hallucination": false,
+      "tsdc_tiers": {
+        "codebase_rules": "rule1"
+      },
+      "layer_results": [
+        "passed"
+      ],
+      "metrics": {
+        "M1_prompt_tokens": 1001,
+        "M7_hallucination_rate": 0.0
+      }
+    },
+    {
+      "task_id": "FT-003",
+      "mode": "full",
+      "passed_at_1": false,
+      "passed_at_5": false,
+      "iterations": 5,
+      "hallucination": true,
+      "tsdc_tiers": {
+        "codebase_rules": "rule1"
+      },
+      "layer_results": [
+        "symbol_check",
+        "type_check",
+        "symbol_check",
+        "type_check",
+        "symbol_check"
+      ],
+      "metrics": {
+        "M1_prompt_tokens": 1044,
+        "M7_hallucination_rate": 0.6
+      }
+    },
+    {
+      "task_id": "FT-004",
+      "mode": "full",
+      "passed_at_1": true,
+      "passed_at_5": true,
+      "iterations": 1,
+      "hallucination": false,
+      "tsdc_tiers": {
+        "codebase_rules": "rule1"
+      },
+      "layer_results": [
+        "passed"
+      ],
+      "metrics": {
+        "M1_prompt_tokens": 1100,
+        "M7_hallucination_rate": 0.0
+      }
+    },
+    {
+      "task_id": "FT-005",
+      "mode": "full",
+      "passed_at_1": false,
+      "passed_at_5": false,
+      "iterations": 5,
+      "hallucination": true,
+      "tsdc_tiers": {
+        "codebase_rules": "rule1"
+      },
+      "layer_results": [
+        "type_check",
+        "symbol_check",
+        "type_check",
+        "type_check",
+        "symbol_check"
+      ],
+      "metrics": {
+        "M1_prompt_tokens": 869,
+        "M7_hallucination_rate": 0.4
+      }
+    },
+    {
+      "task_id": "FT-006",
+      "mode": "full",
+      "passed_at_1": true,
+      "passed_at_5": true,
+      "iterations": 1,
+      "hallucination": false,
+      "tsdc_tiers": {
+        "codebase_rules": "rule1"
+      },
+      "layer_results": [
+        "passed"
+      ],
+      "metrics": {
+        "M1_prompt_tokens": 883,
+        "M7_hallucination_rate": 0.0
+      }
+    },
+    {
+      "task_id": "FT-007",
+      "mode": "full",
+      "passed_at_1": true,
+      "passed_at_5": true,
+      "iterations": 1,
+      "hallucination": false,
+      "tsdc_tiers": {
+        "codebase_rules": "rule1"
+      },
+      "layer_results": [
+        "passed"
+      ],
+      "metrics": {
+        "M1_prompt_tokens": 870,
+        "M7_hallucination_rate": 0.0
+      }
+    },
+    {
+      "task_id": "FT-008",
+      "mode": "full",
+      "passed_at_1": true,
+      "passed_at_5": true,
+      "iterations": 1,
+      "hallucination": false,
+      "tsdc_tiers": {
+        "codebase_rules": "rule1"
+      },
+      "layer_results": [
+        "passed"
+      ],
+      "metrics": {
+        "M1_prompt_tokens": 940,
+        "M7_hallucination_rate": 0.0
+      }
+    },
+    {
+      "task_id": "FT-009",
+      "mode": "full",
+      "passed_at_1": false,
+      "passed_at_5": false,
+      "iterations": 5,
+      "hallucination": false,
+      "tsdc_tiers": {
+        "codebase_rules": "rule1"
+      },
+      "layer_results": [
+        "type_check",
+        "type_check",
+        "type_check",
+        "type_check",
+        "type_check"
+      ],
+      "metrics": {
+        "M1_prompt_tokens": 1020,
+        "M7_hallucination_rate": 0.0
+      }
+    },
+    {
+      "task_id": "FT-010",
+      "mode": "full",
+      "passed_at_1": true,
+      "passed_at_5": true,
+      "iterations": 1,
+      "hallucination": false,
+      "tsdc_tiers": {
+        "codebase_rules": "rule1"
+      },
+      "layer_results": [
+        "passed"
+      ],
+      "metrics": {
+        "M1_prompt_tokens": 919,
+        "M7_hallucination_rate": 0.0
+      }
+    },
+    {
+      "task_id": "FT-011",
+      "mode": "full",
+      "passed_at_1": false,
+      "passed_at_5": false,
+      "iterations": 5,
+      "hallucination": true,
+      "tsdc_tiers": {
+        "codebase_rules": "rule1"
+      },
+      "layer_results": [
+        "symbol_check",
+        "symbol_check",
+        "symbol_check",
+        "symbol_check",
+        "symbol_check"
+      ],
+      "metrics": {
+        "M1_prompt_tokens": 903,
+        "M7_hallucination_rate": 1.0
+      }
+    },
+    {
+      "task_id": "FT-012",
+      "mode": "full",
+      "passed_at_1": false,
+      "passed_at_5": false,
+      "iterations": 5,
+      "hallucination": true,
+      "tsdc_tiers": {
+        "codebase_rules": "rule1"
+      },
+      "layer_results": [
+        "symbol_check",
+        "symbol_check",
+        "symbol_check",
+        "symbol_check",
+        "symbol_check"
+      ],
+      "metrics": {
+        "M1_prompt_tokens": 1005,
+        "M7_hallucination_rate": 1.0
+      }
+    },
+    {
+      "task_id": "FT-013",
+      "mode": "full",
+      "passed_at_1": true,
+      "passed_at_5": true,
+      "iterations": 1,
+      "hallucination": false,
+      "tsdc_tiers": {
+        "codebase_rules": "rule1"
+      },
+      "layer_results": [
+        "passed"
+      ],
+      "metrics": {
+        "M1_prompt_tokens": 808,
+        "M7_hallucination_rate": 0.0
+      }
+    },
+    {
+      "task_id": "FT-014",
+      "mode": "full",
+      "passed_at_1": false,
+      "passed_at_5": false,
+      "iterations": 5,
+      "hallucination": true,
+      "tsdc_tiers": {
+        "codebase_rules": "rule1"
+      },
+      "layer_results": [
+        "symbol_check",
+        "symbol_check",
+        "symbol_check",
+        "symbol_check",
+        "symbol_check"
+      ],
+      "metrics": {
+        "M1_prompt_tokens": 955,
+        "M7_hallucination_rate": 1.0
+      }
+    },
+    {
+      "task_id": "FT-015",
+      "mode": "full",
+      "passed_at_1": false,
+      "passed_at_5": false,
+      "iterations": 5,
+      "hallucination": true,
+      "tsdc_tiers": {
+        "codebase_rules": "rule1"
+      },
+      "layer_results": [
+        "symbol_check",
+        "symbol_check",
+        "symbol_check",
+        "symbol_check",
+        "symbol_check"
+      ],
+      "metrics": {
+        "M1_prompt_tokens": 847,
+        "M7_hallucination_rate": 1.0
+      }
+    },
+    {
+      "task_id": "FT-016",
+      "mode": "full",
+      "passed_at_1": false,
+      "passed_at_5": false,
+      "iterations": 5,
+      "hallucination": true,
+      "tsdc_tiers": {
+        "codebase_rules": "rule1"
+      },
+      "layer_results": [
+        "symbol_check",
+        "symbol_check",
+        "symbol_check",
+        "symbol_check",
+        "symbol_check"
+      ],
+      "metrics": {
+        "M1_prompt_tokens": 619,
+        "M7_hallucination_rate": 1.0
+      }
+    },
+    {
+      "task_id": "FT-017",
+      "mode": "full",
+      "passed_at_1": false,
+      "passed_at_5": false,
+      "iterations": 5,
+      "hallucination": true,
+      "tsdc_tiers": {
+        "codebase_rules": "rule1"
+      },
+      "layer_results": [
+        "symbol_check",
+        "symbol_check",
+        "symbol_check",
+        "symbol_check",
+        "symbol_check"
+      ],
+      "metrics": {
+        "M1_prompt_tokens": 656,
+        "M7_hallucination_rate": 1.0
+      }
+    },
+    {
+      "task_id": "FT-018",
+      "mode": "full",
+      "passed_at_1": false,
+      "passed_at_5": false,
+      "iterations": 5,
+      "hallucination": false,
+      "tsdc_tiers": {
+        "codebase_rules": "rule1"
+      },
+      "layer_results": [
+        "type_check",
+        "type_check",
+        "type_check",
+        "type_check",
+        "type_check"
+      ],
+      "metrics": {
+        "M1_prompt_tokens": 645,
+        "M7_hallucination_rate": 0.0
+      }
+    },
+    {
+      "task_id": "FT-019",
+      "mode": "full",
+      "passed_at_1": false,
+      "passed_at_5": false,
+      "iterations": 5,
+      "hallucination": true,
+      "tsdc_tiers": {
+        "codebase_rules": "rule1"
+      },
+      "layer_results": [
+        "symbol_check",
+        "symbol_check",
+        "symbol_check",
+        "symbol_check",
+        "symbol_check"
+      ],
+      "metrics": {
+        "M1_prompt_tokens": 638,
+        "M7_hallucination_rate": 1.0
+      }
+    },
+    {
+      "task_id": "FT-020",
+      "mode": "full",
+      "passed_at_1": false,
+      "passed_at_5": false,
+      "iterations": 5,
+      "hallucination": false,
+      "tsdc_tiers": {
+        "codebase_rules": "rule1"
+      },
+      "layer_results": [
+        "type_check",
+        "type_check",
+        "type_check",
+        "type_check",
+        "type_check"
+      ],
+      "metrics": {
+        "M1_prompt_tokens": 594,
+        "M7_hallucination_rate": 0.0
+      }
+    },
+    {
+      "task_id": "FT-021",
+      "mode": "full",
+      "passed_at_1": false,
+      "passed_at_5": false,
+      "iterations": 5,
+      "hallucination": true,
+      "tsdc_tiers": {
+        "codebase_rules": "rule1"
+      },
+      "layer_results": [
+        "symbol_check",
+        "symbol_check",
+        "symbol_check",
+        "symbol_check",
+        "symbol_check"
+      ],
+      "metrics": {
+        "M1_prompt_tokens": 648,
+        "M7_hallucination_rate": 1.0
+      }
+    },
+    {
+      "task_id": "FT-022",
+      "mode": "full",
+      "passed_at_1": false,
+      "passed_at_5": false,
+      "iterations": 5,
+      "hallucination": false,
+      "tsdc_tiers": {
+        "codebase_rules": "rule1"
+      },
+      "layer_results": [
+        "type_check",
+        "type_check",
+        "type_check",
+        "type_check",
+        "type_check"
+      ],
+      "metrics": {
+        "M1_prompt_tokens": 828,
+        "M7_hallucination_rate": 0.0
+      }
+    },
+    {
+      "task_id": "FT-023",
+      "mode": "full",
+      "passed_at_1": false,
+      "passed_at_5": false,
+      "iterations": 5,
+      "hallucination": true,
+      "tsdc_tiers": {
+        "codebase_rules": "rule1"
+      },
+      "layer_results": [
+        "symbol_check",
+        "symbol_check",
+        "symbol_check",
+        "symbol_check",
+        "symbol_check"
+      ],
+      "metrics": {
+        "M1_prompt_tokens": 973,
+        "M7_hallucination_rate": 1.0
+      }
+    },
+    {
+      "task_id": "FT-024",
+      "mode": "full",
+      "passed_at_1": false,
+      "passed_at_5": false,
+      "iterations": 5,
+      "hallucination": false,
+      "tsdc_tiers": {
+        "codebase_rules": "rule1"
+      },
+      "layer_results": [
+        "type_check",
+        "type_check",
+        "type_check",
+        "type_check",
+        "type_check"
+      ],
+      "metrics": {
+        "M1_prompt_tokens": 538,
+        "M7_hallucination_rate": 0.0
+      }
+    },
+    {
+      "task_id": "FT-025",
+      "mode": "full",
+      "passed_at_1": false,
+      "passed_at_5": false,
+      "iterations": 5,
+      "hallucination": true,
+      "tsdc_tiers": {
+        "codebase_rules": "rule1"
+      },
+      "layer_results": [
+        "symbol_check",
+        "symbol_check",
+        "symbol_check",
+        "symbol_check",
+        "symbol_check"
+      ],
+      "metrics": {
+        "M1_prompt_tokens": 1132,
+        "M7_hallucination_rate": 1.0
+      }
+    }
+  ],
+  "no_ki": [
+    {
+      "task_id": "FT-001",
+      "mode": "no_ki",
+      "passed_at_1": false,
+      "passed_at_5": false,
+      "iterations": 5,
+      "hallucination": false,
+      "tsdc_tiers": {
+        "codebase_rules": ""
+      },
+      "layer_results": [
+        "type_check",
+        "type_check",
+        "type_check",
+        "type_check",
+        "type_check"
+      ],
+      "metrics": {
+        "M1_prompt_tokens": 777,
+        "M7_hallucination_rate": 0.0
+      }
+    },
+    {
+      "task_id": "FT-002",
+      "mode": "no_ki",
+      "passed_at_1": true,
+      "passed_at_5": true,
+      "iterations": 1,
+      "hallucination": false,
+      "tsdc_tiers": {
+        "codebase_rules": ""
+      },
+      "layer_results": [
+        "passed"
+      ],
+      "metrics": {
+        "M1_prompt_tokens": 960,
+        "M7_hallucination_rate": 0.0
+      }
+    },
+    {
+      "task_id": "FT-003",
+      "mode": "no_ki",
+      "passed_at_1": false,
+      "passed_at_5": false,
+      "iterations": 5,
+      "hallucination": true,
+      "tsdc_tiers": {
+        "codebase_rules": ""
+      },
+      "layer_results": [
+        "symbol_check",
+        "type_check",
+        "symbol_check",
+        "type_check",
+        "symbol_check"
+      ],
+      "metrics": {
+        "M1_prompt_tokens": 1003,
+        "M7_hallucination_rate": 0.6
+      }
+    },
+    {
+      "task_id": "FT-004",
+      "mode": "no_ki",
+      "passed_at_1": true,
+      "passed_at_5": true,
+      "iterations": 1,
+      "hallucination": false,
+      "tsdc_tiers": {
+        "codebase_rules": ""
+      },
+      "layer_results": [
+        "passed"
+      ],
+      "metrics": {
+        "M1_prompt_tokens": 1059,
+        "M7_hallucination_rate": 0.0
+      }
+    },
+    {
+      "task_id": "FT-005",
+      "mode": "no_ki",
+      "passed_at_1": false,
+      "passed_at_5": false,
+      "iterations": 5,
+      "hallucination": true,
+      "tsdc_tiers": {
+        "codebase_rules": ""
+      },
+      "layer_results": [
+        "type_check",
+        "symbol_check",
+        "type_check",
+        "type_check",
+        "type_check"
+      ],
+      "metrics": {
+        "M1_prompt_tokens": 828,
+        "M7_hallucination_rate": 0.2
+      }
+    },
+    {
+      "task_id": "FT-006",
+      "mode": "no_ki",
+      "passed_at_1": true,
+      "passed_at_5": true,
+      "iterations": 1,
+      "hallucination": false,
+      "tsdc_tiers": {
+        "codebase_rules": ""
+      },
+      "layer_results": [
+        "passed"
+      ],
+      "metrics": {
+        "M1_prompt_tokens": 842,
+        "M7_hallucination_rate": 0.0
+      }
+    },
+    {
+      "task_id": "FT-007",
+      "mode": "no_ki",
+      "passed_at_1": true,
+      "passed_at_5": true,
+      "iterations": 1,
+      "hallucination": false,
+      "tsdc_tiers": {
+        "codebase_rules": ""
+      },
+      "layer_results": [
+        "passed"
+      ],
+      "metrics": {
+        "M1_prompt_tokens": 829,
+        "M7_hallucination_rate": 0.0
+      }
+    },
+    {
+      "task_id": "FT-008",
+      "mode": "no_ki",
+      "passed_at_1": true,
+      "passed_at_5": true,
+      "iterations": 1,
+      "hallucination": false,
+      "tsdc_tiers": {
+        "codebase_rules": ""
+      },
+      "layer_results": [
+        "passed"
+      ],
+      "metrics": {
+        "M1_prompt_tokens": 899,
+        "M7_hallucination_rate": 0.0
+      }
+    },
+    {
+      "task_id": "FT-009",
+      "mode": "no_ki",
+      "passed_at_1": false,
+      "passed_at_5": false,
+      "iterations": 5,
+      "hallucination": false,
+      "tsdc_tiers": {
+        "codebase_rules": ""
+      },
+      "layer_results": [
+        "type_check",
+        "type_check",
+        "type_check",
+        "type_check",
+        "type_check"
+      ],
+      "metrics": {
+        "M1_prompt_tokens": 979,
+        "M7_hallucination_rate": 0.0
+      }
+    },
+    {
+      "task_id": "FT-010",
+      "mode": "no_ki",
+      "passed_at_1": true,
+      "passed_at_5": true,
+      "iterations": 1,
+      "hallucination": false,
+      "tsdc_tiers": {
+        "codebase_rules": ""
+      },
+      "layer_results": [
+        "passed"
+      ],
+      "metrics": {
+        "M1_prompt_tokens": 878,
+        "M7_hallucination_rate": 0.0
+      }
+    },
+    {
+      "task_id": "FT-011",
+      "mode": "no_ki",
+      "passed_at_1": false,
+      "passed_at_5": false,
+      "iterations": 5,
+      "hallucination": true,
+      "tsdc_tiers": {
+        "codebase_rules": ""
+      },
+      "layer_results": [
+        "symbol_check",
+        "symbol_check",
+        "symbol_check",
+        "symbol_check",
+        "symbol_check"
+      ],
+      "metrics": {
+        "M1_prompt_tokens": 862,
+        "M7_hallucination_rate": 1.0
+      }
+    },
+    {
+      "task_id": "FT-012",
+      "mode": "no_ki",
+      "passed_at_1": false,
+      "passed_at_5": false,
+      "iterations": 5,
+      "hallucination": true,
+      "tsdc_tiers": {
+        "codebase_rules": ""
+      },
+      "layer_results": [
+        "symbol_check",
+        "symbol_check",
+        "symbol_check",
+        "symbol_check",
+        "symbol_check"
+      ],
+      "metrics": {
+        "M1_prompt_tokens": 964,
+        "M7_hallucination_rate": 1.0
+      }
+    },
+    {
+      "task_id": "FT-013",
+      "mode": "no_ki",
+      "passed_at_1": true,
+      "passed_at_5": true,
+      "iterations": 1,
+      "hallucination": false,
+      "tsdc_tiers": {
+        "codebase_rules": ""
+      },
+      "layer_results": [
+        "passed"
+      ],
+      "metrics": {
+        "M1_prompt_tokens": 767,
+        "M7_hallucination_rate": 0.0
+      }
+    },
+    {
+      "task_id": "FT-014",
+      "mode": "no_ki",
+      "passed_at_1": false,
+      "passed_at_5": false,
+      "iterations": 5,
+      "hallucination": true,
+      "tsdc_tiers": {
+        "codebase_rules": ""
+      },
+      "layer_results": [
+        "symbol_check",
+        "symbol_check",
+        "symbol_check",
+        "symbol_check",
+        "symbol_check"
+      ],
+      "metrics": {
+        "M1_prompt_tokens": 914,
+        "M7_hallucination_rate": 1.0
+      }
+    },
+    {
+      "task_id": "FT-015",
+      "mode": "no_ki",
+      "passed_at_1": false,
+      "passed_at_5": false,
+      "iterations": 5,
+      "hallucination": true,
+      "tsdc_tiers": {
+        "codebase_rules": ""
+      },
+      "layer_results": [
+        "symbol_check",
+        "symbol_check",
+        "symbol_check",
+        "symbol_check",
+        "symbol_check"
+      ],
+      "metrics": {
+        "M1_prompt_tokens": 806,
+        "M7_hallucination_rate": 1.0
+      }
+    },
+    {
+      "task_id": "FT-016",
+      "mode": "no_ki",
+      "passed_at_1": false,
+      "passed_at_5": false,
+      "iterations": 5,
+      "hallucination": true,
+      "tsdc_tiers": {
+        "codebase_rules": ""
+      },
+      "layer_results": [
+        "symbol_check",
+        "symbol_check",
+        "symbol_check",
+        "symbol_check",
+        "symbol_check"
+      ],
+      "metrics": {
+        "M1_prompt_tokens": 578,
+        "M7_hallucination_rate": 1.0
+      }
+    },
+    {
+      "task_id": "FT-017",
+      "mode": "no_ki",
+      "passed_at_1": false,
+      "passed_at_5": false,
+      "iterations": 5,
+      "hallucination": true,
+      "tsdc_tiers": {
+        "codebase_rules": ""
+      },
+      "layer_results": [
+        "symbol_check",
+        "symbol_check",
+        "symbol_check",
+        "symbol_check",
+        "symbol_check"
+      ],
+      "metrics": {
+        "M1_prompt_tokens": 615,
+        "M7_hallucination_rate": 1.0
+      }
+    },
+    {
+      "task_id": "FT-018",
+      "mode": "no_ki",
+      "passed_at_1": false,
+      "passed_at_5": false,
+      "iterations": 5,
+      "hallucination": false,
+      "tsdc_tiers": {
+        "codebase_rules": ""
+      },
+      "layer_results": [
+        "type_check",
+        "type_check",
+        "type_check",
+        "type_check",
+        "type_check"
+      ],
+      "metrics": {
+        "M1_prompt_tokens": 604,
+        "M7_hallucination_rate": 0.0
+      }
+    },
+    {
+      "task_id": "FT-019",
+      "mode": "no_ki",
+      "passed_at_1": false,
+      "passed_at_5": false,
+      "iterations": 5,
+      "hallucination": true,
+      "tsdc_tiers": {
+        "codebase_rules": ""
+      },
+      "layer_results": [
+        "symbol_check",
+        "symbol_check",
+        "symbol_check",
+        "symbol_check",
+        "symbol_check"
+      ],
+      "metrics": {
+        "M1_prompt_tokens": 597,
+        "M7_hallucination_rate": 1.0
+      }
+    },
+    {
+      "task_id": "FT-020",
+      "mode": "no_ki",
+      "passed_at_1": false,
+      "passed_at_5": false,
+      "iterations": 5,
+      "hallucination": false,
+      "tsdc_tiers": {
+        "codebase_rules": ""
+      },
+      "layer_results": [
+        "type_check",
+        "type_check",
+        "type_check",
+        "type_check",
+        "type_check"
+      ],
+      "metrics": {
+        "M1_prompt_tokens": 553,
+        "M7_hallucination_rate": 0.0
+      }
+    },
+    {
+      "task_id": "FT-021",
+      "mode": "no_ki",
+      "passed_at_1": false,
+      "passed_at_5": false,
+      "iterations": 5,
+      "hallucination": true,
+      "tsdc_tiers": {
+        "codebase_rules": ""
+      },
+      "layer_results": [
+        "symbol_check",
+        "symbol_check",
+        "symbol_check",
+        "symbol_check",
+        "symbol_check"
+      ],
+      "metrics": {
+        "M1_prompt_tokens": 607,
+        "M7_hallucination_rate": 1.0
+      }
+    },
+    {
+      "task_id": "FT-022",
+      "mode": "no_ki",
+      "passed_at_1": false,
+      "passed_at_5": false,
+      "iterations": 5,
+      "hallucination": false,
+      "tsdc_tiers": {
+        "codebase_rules": ""
+      },
+      "layer_results": [
+        "type_check",
+        "type_check",
+        "type_check",
+        "type_check",
+        "type_check"
+      ],
+      "metrics": {
+        "M1_prompt_tokens": 787,
+        "M7_hallucination_rate": 0.0
+      }
+    },
+    {
+      "task_id": "FT-023",
+      "mode": "no_ki",
+      "passed_at_1": false,
+      "passed_at_5": false,
+      "iterations": 5,
+      "hallucination": true,
+      "tsdc_tiers": {
+        "codebase_rules": ""
+      },
+      "layer_results": [
+        "symbol_check",
+        "symbol_check",
+        "symbol_check",
+        "symbol_check",
+        "symbol_check"
+      ],
+      "metrics": {
+        "M1_prompt_tokens": 932,
+        "M7_hallucination_rate": 1.0
+      }
+    },
+    {
+      "task_id": "FT-024",
+      "mode": "no_ki",
+      "passed_at_1": false,
+      "passed_at_5": false,
+      "iterations": 5,
+      "hallucination": false,
+      "tsdc_tiers": {
+        "codebase_rules": ""
+      },
+      "layer_results": [
+        "type_check",
+        "type_check",
+        "type_check",
+        "type_check",
+        "type_check"
+      ],
+      "metrics": {
+        "M1_prompt_tokens": 497,
+        "M7_hallucination_rate": 0.0
+      }
+    },
+    {
+      "task_id": "FT-025",
+      "mode": "no_ki",
+      "passed_at_1": false,
+      "passed_at_5": false,
+      "iterations": 5,
+      "hallucination": true,
+      "tsdc_tiers": {
+        "codebase_rules": ""
+      },
+      "layer_results": [
+        "symbol_check",
+        "symbol_check",
+        "symbol_check",
+        "symbol_check",
+        "symbol_check"
+      ],
+      "metrics": {
+        "M1_prompt_tokens": 1091,
+        "M7_hallucination_rate": 1.0
+      }
+    }
+  ],
+  "no_sandbox": [
+    {
+      "task_id": "FT-001",
+      "mode": "no_sandbox",
+      "passed_at_1": false,
+      "passed_at_5": false,
+      "iterations": 5,
+      "hallucination": false,
+      "tsdc_tiers": {
+        "codebase_rules": "rule1"
+      },
+      "layer_results": [
+        "type_check",
+        "type_check",
+        "type_check",
+        "type_check",
+        "type_check"
+      ],
+      "metrics": {
+        "M1_prompt_tokens": 818,
+        "M7_hallucination_rate": 0.0
+      }
+    },
+    {
+      "task_id": "FT-002",
+      "mode": "no_sandbox",
+      "passed_at_1": true,
+      "passed_at_5": true,
+      "iterations": 1,
+      "hallucination": false,
+      "tsdc_tiers": {
+        "codebase_rules": "rule1"
+      },
+      "layer_results": [
+        "passed"
+      ],
+      "metrics": {
+        "M1_prompt_tokens": 1001,
+        "M7_hallucination_rate": 0.0
+      }
+    },
+    {
+      "task_id": "FT-003",
+      "mode": "no_sandbox",
+      "passed_at_1": false,
+      "passed_at_5": false,
+      "iterations": 5,
+      "hallucination": true,
+      "tsdc_tiers": {
+        "codebase_rules": "rule1"
+      },
+      "layer_results": [
+        "symbol_check",
+        "type_check",
+        "symbol_check",
+        "type_check",
+        "symbol_check"
+      ],
+      "metrics": {
+        "M1_prompt_tokens": 1044,
+        "M7_hallucination_rate": 0.6
+      }
+    },
+    {
+      "task_id": "FT-004",
+      "mode": "no_sandbox",
+      "passed_at_1": true,
+      "passed_at_5": true,
+      "iterations": 1,
+      "hallucination": false,
+      "tsdc_tiers": {
+        "codebase_rules": "rule1"
+      },
+      "layer_results": [
+        "passed"
+      ],
+      "metrics": {
+        "M1_prompt_tokens": 1100,
+        "M7_hallucination_rate": 0.0
+      }
+    },
+    {
+      "task_id": "FT-005",
+      "mode": "no_sandbox",
+      "passed_at_1": false,
+      "passed_at_5": false,
+      "iterations": 5,
+      "hallucination": true,
+      "tsdc_tiers": {
+        "codebase_rules": "rule1"
+      },
+      "layer_results": [
+        "type_check",
+        "type_check",
+        "symbol_check",
+        "type_check",
+        "type_check"
+      ],
+      "metrics": {
+        "M1_prompt_tokens": 869,
+        "M7_hallucination_rate": 0.2
+      }
+    },
+    {
+      "task_id": "FT-006",
+      "mode": "no_sandbox",
+      "passed_at_1": true,
+      "passed_at_5": true,
+      "iterations": 1,
+      "hallucination": false,
+      "tsdc_tiers": {
+        "codebase_rules": "rule1"
+      },
+      "layer_results": [
+        "passed"
+      ],
+      "metrics": {
+        "M1_prompt_tokens": 883,
+        "M7_hallucination_rate": 0.0
+      }
+    },
+    {
+      "task_id": "FT-007",
+      "mode": "no_sandbox",
+      "passed_at_1": true,
+      "passed_at_5": true,
+      "iterations": 1,
+      "hallucination": false,
+      "tsdc_tiers": {
+        "codebase_rules": "rule1"
+      },
+      "layer_results": [
+        "passed"
+      ],
+      "metrics": {
+        "M1_prompt_tokens": 870,
+        "M7_hallucination_rate": 0.0
+      }
+    },
+    {
+      "task_id": "FT-008",
+      "mode": "no_sandbox",
+      "passed_at_1": true,
+      "passed_at_5": true,
+      "iterations": 1,
+      "hallucination": false,
+      "tsdc_tiers": {
+        "codebase_rules": "rule1"
+      },
+      "layer_results": [
+        "passed"
+      ],
+      "metrics": {
+        "M1_prompt_tokens": 940,
+        "M7_hallucination_rate": 0.0
+      }
+    },
+    {
+      "task_id": "FT-009",
+      "mode": "no_sandbox",
+      "passed_at_1": false,
+      "passed_at_5": false,
+      "iterations": 5,
+      "hallucination": false,
+      "tsdc_tiers": {
+        "codebase_rules": "rule1"
+      },
+      "layer_results": [
+        "type_check",
+        "type_check",
+        "type_check",
+        "type_check",
+        "type_check"
+      ],
+      "metrics": {
+        "M1_prompt_tokens": 1020,
+        "M7_hallucination_rate": 0.0
+      }
+    },
+    {
+      "task_id": "FT-010",
+      "mode": "no_sandbox",
+      "passed_at_1": true,
+      "passed_at_5": true,
+      "iterations": 1,
+      "hallucination": false,
+      "tsdc_tiers": {
+        "codebase_rules": "rule1"
+      },
+      "layer_results": [
+        "passed"
+      ],
+      "metrics": {
+        "M1_prompt_tokens": 919,
+        "M7_hallucination_rate": 0.0
+      }
+    },
+    {
+      "task_id": "FT-011",
+      "mode": "no_sandbox",
+      "passed_at_1": false,
+      "passed_at_5": false,
+      "iterations": 5,
+      "hallucination": true,
+      "tsdc_tiers": {
+        "codebase_rules": "rule1"
+      },
+      "layer_results": [
+        "symbol_check",
+        "symbol_check",
+        "symbol_check",
+        "symbol_check",
+        "symbol_check"
+      ],
+      "metrics": {
+        "M1_prompt_tokens": 903,
+        "M7_hallucination_rate": 1.0
+      }
+    },
+    {
+      "task_id": "FT-012",
+      "mode": "no_sandbox",
+      "passed_at_1": false,
+      "passed_at_5": false,
+      "iterations": 5,
+      "hallucination": true,
+      "tsdc_tiers": {
+        "codebase_rules": "rule1"
+      },
+      "layer_results": [
+        "symbol_check",
+        "symbol_check",
+        "symbol_check",
+        "symbol_check",
+        "symbol_check"
+      ],
+      "metrics": {
+        "M1_prompt_tokens": 1005,
+        "M7_hallucination_rate": 1.0
+      }
+    },
+    {
+      "task_id": "FT-013",
+      "mode": "no_sandbox",
+      "passed_at_1": true,
+      "passed_at_5": true,
+      "iterations": 1,
+      "hallucination": false,
+      "tsdc_tiers": {
+        "codebase_rules": "rule1"
+      },
+      "layer_results": [
+        "passed"
+      ],
+      "metrics": {
+        "M1_prompt_tokens": 808,
+        "M7_hallucination_rate": 0.0
+      }
+    },
+    {
+      "task_id": "FT-014",
+      "mode": "no_sandbox",
+      "passed_at_1": false,
+      "passed_at_5": false,
+      "iterations": 5,
+      "hallucination": true,
+      "tsdc_tiers": {
+        "codebase_rules": "rule1"
+      },
+      "layer_results": [
+        "symbol_check",
+        "symbol_check",
+        "symbol_check",
+        "symbol_check",
+        "symbol_check"
+      ],
+      "metrics": {
+        "M1_prompt_tokens": 955,
+        "M7_hallucination_rate": 1.0
+      }
+    },
+    {
+      "task_id": "FT-015",
+      "mode": "no_sandbox",
+      "passed_at_1": false,
+      "passed_at_5": false,
+      "iterations": 5,
+      "hallucination": true,
+      "tsdc_tiers": {
+        "codebase_rules": "rule1"
+      },
+      "layer_results": [
+        "symbol_check",
+        "symbol_check",
+        "symbol_check",
+        "symbol_check",
+        "symbol_check"
+      ],
+      "metrics": {
+        "M1_prompt_tokens": 847,
+        "M7_hallucination_rate": 1.0
+      }
+    },
+    {
+      "task_id": "FT-016",
+      "mode": "no_sandbox",
+      "passed_at_1": false,
+      "passed_at_5": false,
+      "iterations": 5,
+      "hallucination": true,
+      "tsdc_tiers": {
+        "codebase_rules": "rule1"
+      },
+      "layer_results": [
+        "symbol_check",
+        "symbol_check",
+        "symbol_check",
+        "symbol_check",
+        "symbol_check"
+      ],
+      "metrics": {
+        "M1_prompt_tokens": 619,
+        "M7_hallucination_rate": 1.0
+      }
+    },
+    {
+      "task_id": "FT-017",
+      "mode": "no_sandbox",
+      "passed_at_1": false,
+      "passed_at_5": false,
+      "iterations": 5,
+      "hallucination": true,
+      "tsdc_tiers": {
+        "codebase_rules": "rule1"
+      },
+      "layer_results": [
+        "symbol_check",
+        "symbol_check",
+        "symbol_check",
+        "symbol_check",
+        "symbol_check"
+      ],
+      "metrics": {
+        "M1_prompt_tokens": 656,
+        "M7_hallucination_rate": 1.0
+      }
+    },
+    {
+      "task_id": "FT-018",
+      "mode": "no_sandbox",
+      "passed_at_1": false,
+      "passed_at_5": false,
+      "iterations": 5,
+      "hallucination": false,
+      "tsdc_tiers": {
+        "codebase_rules": "rule1"
+      },
+      "layer_results": [
+        "type_check",
+        "type_check",
+        "type_check",
+        "type_check",
+        "type_check"
+      ],
+      "metrics": {
+        "M1_prompt_tokens": 645,
+        "M7_hallucination_rate": 0.0
+      }
+    },
+    {
+      "task_id": "FT-019",
+      "mode": "no_sandbox",
+      "passed_at_1": false,
+      "passed_at_5": false,
+      "iterations": 5,
+      "hallucination": true,
+      "tsdc_tiers": {
+        "codebase_rules": "rule1"
+      },
+      "layer_results": [
+        "symbol_check",
+        "symbol_check",
+        "symbol_check",
+        "symbol_check",
+        "symbol_check"
+      ],
+      "metrics": {
+        "M1_prompt_tokens": 638,
+        "M7_hallucination_rate": 1.0
+      }
+    },
+    {
+      "task_id": "FT-020",
+      "mode": "no_sandbox",
+      "passed_at_1": false,
+      "passed_at_5": false,
+      "iterations": 5,
+      "hallucination": false,
+      "tsdc_tiers": {
+        "codebase_rules": "rule1"
+      },
+      "layer_results": [
+        "type_check",
+        "type_check",
+        "type_check",
+        "type_check",
+        "type_check"
+      ],
+      "metrics": {
+        "M1_prompt_tokens": 594,
+        "M7_hallucination_rate": 0.0
+      }
+    },
+    {
+      "task_id": "FT-021",
+      "mode": "no_sandbox",
+      "passed_at_1": false,
+      "passed_at_5": false,
+      "iterations": 5,
+      "hallucination": true,
+      "tsdc_tiers": {
+        "codebase_rules": "rule1"
+      },
+      "layer_results": [
+        "symbol_check",
+        "symbol_check",
+        "symbol_check",
+        "symbol_check",
+        "symbol_check"
+      ],
+      "metrics": {
+        "M1_prompt_tokens": 648,
+        "M7_hallucination_rate": 1.0
+      }
+    },
+    {
+      "task_id": "FT-022",
+      "mode": "no_sandbox",
+      "passed_at_1": false,
+      "passed_at_5": false,
+      "iterations": 5,
+      "hallucination": false,
+      "tsdc_tiers": {
+        "codebase_rules": "rule1"
+      },
+      "layer_results": [
+        "type_check",
+        "type_check",
+        "type_check",
+        "type_check",
+        "type_check"
+      ],
+      "metrics": {
+        "M1_prompt_tokens": 828,
+        "M7_hallucination_rate": 0.0
+      }
+    },
+    {
+      "task_id": "FT-023",
+      "mode": "no_sandbox",
+      "passed_at_1": false,
+      "passed_at_5": false,
+      "iterations": 5,
+      "hallucination": true,
+      "tsdc_tiers": {
+        "codebase_rules": "rule1"
+      },
+      "layer_results": [
+        "symbol_check",
+        "symbol_check",
+        "symbol_check",
+        "symbol_check",
+        "symbol_check"
+      ],
+      "metrics": {
+        "M1_prompt_tokens": 973,
+        "M7_hallucination_rate": 1.0
+      }
+    },
+    {
+      "task_id": "FT-024",
+      "mode": "no_sandbox",
+      "passed_at_1": false,
+      "passed_at_5": false,
+      "iterations": 5,
+      "hallucination": false,
+      "tsdc_tiers": {
+        "codebase_rules": "rule1"
+      },
+      "layer_results": [
+        "type_check",
+        "type_check",
+        "type_check",
+        "type_check",
+        "type_check"
+      ],
+      "metrics": {
+        "M1_prompt_tokens": 538,
+        "M7_hallucination_rate": 0.0
+      }
+    },
+    {
+      "task_id": "FT-025",
+      "mode": "no_sandbox",
+      "passed_at_1": false,
+      "passed_at_5": false,
+      "iterations": 5,
+      "hallucination": true,
+      "tsdc_tiers": {
+        "codebase_rules": "rule1"
+      },
+      "layer_results": [
+        "symbol_check",
+        "symbol_check",
+        "symbol_check",
+        "symbol_check",
+        "symbol_check"
+      ],
+      "metrics": {
+        "M1_prompt_tokens": 1132,
+        "M7_hallucination_rate": 1.0
+      }
+    }
+  ],
+  "cl100k": [
+    {
+      "task_id": "FT-001",
+      "mode": "cl100k",
+      "passed_at_1": false,
+      "passed_at_5": false,
+      "iterations": 5,
+      "hallucination": false,
+      "tsdc_tiers": {
+        "codebase_rules": "rule1"
+      },
+      "layer_results": [
+        "type_check",
+        "type_check",
+        "type_check",
+        "type_check",
+        "type_check"
+      ],
+      "metrics": {
+        "M1_prompt_tokens": 818,
+        "M7_hallucination_rate": 0.0
+      }
+    },
+    {
+      "task_id": "FT-002",
+      "mode": "cl100k",
+      "passed_at_1": true,
+      "passed_at_5": true,
+      "iterations": 1,
+      "hallucination": false,
+      "tsdc_tiers": {
+        "codebase_rules": "rule1"
+      },
+      "layer_results": [
+        "passed"
+      ],
+      "metrics": {
+        "M1_prompt_tokens": 995,
+        "M7_hallucination_rate": 0.0
+      }
+    },
+    {
+      "task_id": "FT-003",
+      "mode": "cl100k",
+      "passed_at_1": false,
+      "passed_at_5": false,
+      "iterations": 5,
+      "hallucination": true,
+      "tsdc_tiers": {
+        "codebase_rules": "rule1"
+      },
+      "layer_results": [
+        "symbol_check",
+        "type_check",
+        "symbol_check",
+        "type_check",
+        "symbol_check"
+      ],
+      "metrics": {
+        "M1_prompt_tokens": 1044,
+        "M7_hallucination_rate": 0.6
+      }
+    },
+    {
+      "task_id": "FT-004",
+      "mode": "cl100k",
+      "passed_at_1": true,
+      "passed_at_5": true,
+      "iterations": 1,
+      "hallucination": false,
+      "tsdc_tiers": {
+        "codebase_rules": "rule1"
+      },
+      "layer_results": [
+        "passed"
+      ],
+      "metrics": {
+        "M1_prompt_tokens": 1094,
+        "M7_hallucination_rate": 0.0
+      }
+    },
+    {
+      "task_id": "FT-005",
+      "mode": "cl100k",
+      "passed_at_1": false,
+      "passed_at_5": false,
+      "iterations": 5,
+      "hallucination": false,
+      "tsdc_tiers": {
+        "codebase_rules": "rule1"
+      },
+      "layer_results": [
+        "type_check",
+        "type_check",
+        "type_check",
+        "type_check",
+        "type_check"
+      ],
+      "metrics": {
+        "M1_prompt_tokens": 867,
+        "M7_hallucination_rate": 0.0
+      }
+    },
+    {
+      "task_id": "FT-006",
+      "mode": "cl100k",
+      "passed_at_1": true,
+      "passed_at_5": true,
+      "iterations": 1,
+      "hallucination": false,
+      "tsdc_tiers": {
+        "codebase_rules": "rule1"
+      },
+      "layer_results": [
+        "passed"
+      ],
+      "metrics": {
+        "M1_prompt_tokens": 877,
+        "M7_hallucination_rate": 0.0
+      }
+    },
+    {
+      "task_id": "FT-007",
+      "mode": "cl100k",
+      "passed_at_1": true,
+      "passed_at_5": true,
+      "iterations": 1,
+      "hallucination": false,
+      "tsdc_tiers": {
+        "codebase_rules": "rule1"
+      },
+      "layer_results": [
+        "passed"
+      ],
+      "metrics": {
+        "M1_prompt_tokens": 868,
+        "M7_hallucination_rate": 0.0
+      }
+    },
+    {
+      "task_id": "FT-008",
+      "mode": "cl100k",
+      "passed_at_1": true,
+      "passed_at_5": true,
+      "iterations": 1,
+      "hallucination": false,
+      "tsdc_tiers": {
+        "codebase_rules": "rule1"
+      },
+      "layer_results": [
+        "passed"
+      ],
+      "metrics": {
+        "M1_prompt_tokens": 938,
+        "M7_hallucination_rate": 0.0
+      }
+    },
+    {
+      "task_id": "FT-009",
+      "mode": "cl100k",
+      "passed_at_1": false,
+      "passed_at_5": false,
+      "iterations": 5,
+      "hallucination": false,
+      "tsdc_tiers": {
+        "codebase_rules": "rule1"
+      },
+      "layer_results": [
+        "type_check",
+        "type_check",
+        "type_check",
+        "type_check",
+        "type_check"
+      ],
+      "metrics": {
+        "M1_prompt_tokens": 1018,
+        "M7_hallucination_rate": 0.0
+      }
+    },
+    {
+      "task_id": "FT-010",
+      "mode": "cl100k",
+      "passed_at_1": true,
+      "passed_at_5": true,
+      "iterations": 1,
+      "hallucination": false,
+      "tsdc_tiers": {
+        "codebase_rules": "rule1"
+      },
+      "layer_results": [
+        "passed"
+      ],
+      "metrics": {
+        "M1_prompt_tokens": 913,
+        "M7_hallucination_rate": 0.0
+      }
+    },
+    {
+      "task_id": "FT-011",
+      "mode": "cl100k",
+      "passed_at_1": false,
+      "passed_at_5": false,
+      "iterations": 5,
+      "hallucination": true,
+      "tsdc_tiers": {
+        "codebase_rules": "rule1"
+      },
+      "layer_results": [
+        "symbol_check",
+        "symbol_check",
+        "symbol_check",
+        "symbol_check",
+        "symbol_check"
+      ],
+      "metrics": {
+        "M1_prompt_tokens": 899,
+        "M7_hallucination_rate": 1.0
+      }
+    },
+    {
+      "task_id": "FT-012",
+      "mode": "cl100k",
+      "passed_at_1": false,
+      "passed_at_5": false,
+      "iterations": 5,
+      "hallucination": true,
+      "tsdc_tiers": {
+        "codebase_rules": "rule1"
+      },
+      "layer_results": [
+        "symbol_check",
+        "symbol_check",
+        "symbol_check",
+        "symbol_check",
+        "symbol_check"
+      ],
+      "metrics": {
+        "M1_prompt_tokens": 1001,
+        "M7_hallucination_rate": 1.0
+      }
+    },
+    {
+      "task_id": "FT-013",
+      "mode": "cl100k",
+      "passed_at_1": true,
+      "passed_at_5": true,
+      "iterations": 1,
+      "hallucination": false,
+      "tsdc_tiers": {
+        "codebase_rules": "rule1"
+      },
+      "layer_results": [
+        "passed"
+      ],
+      "metrics": {
+        "M1_prompt_tokens": 803,
+        "M7_hallucination_rate": 0.0
+      }
+    },
+    {
+      "task_id": "FT-014",
+      "mode": "cl100k",
+      "passed_at_1": false,
+      "passed_at_5": false,
+      "iterations": 5,
+      "hallucination": true,
+      "tsdc_tiers": {
+        "codebase_rules": "rule1"
+      },
+      "layer_results": [
+        "symbol_check",
+        "symbol_check",
+        "symbol_check",
+        "symbol_check",
+        "symbol_check"
+      ],
+      "metrics": {
+        "M1_prompt_tokens": 949,
+        "M7_hallucination_rate": 1.0
+      }
+    },
+    {
+      "task_id": "FT-015",
+      "mode": "cl100k",
+      "passed_at_1": false,
+      "passed_at_5": false,
+      "iterations": 5,
+      "hallucination": true,
+      "tsdc_tiers": {
+        "codebase_rules": "rule1"
+      },
+      "layer_results": [
+        "symbol_check",
+        "symbol_check",
+        "symbol_check",
+        "symbol_check",
+        "symbol_check"
+      ],
+      "metrics": {
+        "M1_prompt_tokens": 843,
+        "M7_hallucination_rate": 1.0
+      }
+    },
+    {
+      "task_id": "FT-016",
+      "mode": "cl100k",
+      "passed_at_1": false,
+      "passed_at_5": false,
+      "iterations": 5,
+      "hallucination": true,
+      "tsdc_tiers": {
+        "codebase_rules": "rule1"
+      },
+      "layer_results": [
+        "symbol_check",
+        "symbol_check",
+        "symbol_check",
+        "symbol_check",
+        "symbol_check"
+      ],
+      "metrics": {
+        "M1_prompt_tokens": 618,
+        "M7_hallucination_rate": 1.0
+      }
+    },
+    {
+      "task_id": "FT-017",
+      "mode": "cl100k",
+      "passed_at_1": false,
+      "passed_at_5": false,
+      "iterations": 5,
+      "hallucination": true,
+      "tsdc_tiers": {
+        "codebase_rules": "rule1"
+      },
+      "layer_results": [
+        "symbol_check",
+        "symbol_check",
+        "symbol_check",
+        "symbol_check",
+        "symbol_check"
+      ],
+      "metrics": {
+        "M1_prompt_tokens": 652,
+        "M7_hallucination_rate": 1.0
+      }
+    },
+    {
+      "task_id": "FT-018",
+      "mode": "cl100k",
+      "passed_at_1": false,
+      "passed_at_5": false,
+      "iterations": 5,
+      "hallucination": false,
+      "tsdc_tiers": {
+        "codebase_rules": "rule1"
+      },
+      "layer_results": [
+        "type_check",
+        "type_check",
+        "type_check",
+        "type_check",
+        "type_check"
+      ],
+      "metrics": {
+        "M1_prompt_tokens": 638,
+        "M7_hallucination_rate": 0.0
+      }
+    },
+    {
+      "task_id": "FT-019",
+      "mode": "cl100k",
+      "passed_at_1": false,
+      "passed_at_5": false,
+      "iterations": 5,
+      "hallucination": true,
+      "tsdc_tiers": {
+        "codebase_rules": "rule1"
+      },
+      "layer_results": [
+        "symbol_check",
+        "symbol_check",
+        "symbol_check",
+        "symbol_check",
+        "symbol_check"
+      ],
+      "metrics": {
+        "M1_prompt_tokens": 637,
+        "M7_hallucination_rate": 1.0
+      }
+    },
+    {
+      "task_id": "FT-020",
+      "mode": "cl100k",
+      "passed_at_1": false,
+      "passed_at_5": false,
+      "iterations": 5,
+      "hallucination": false,
+      "tsdc_tiers": {
+        "codebase_rules": "rule1"
+      },
+      "layer_results": [
+        "type_check",
+        "type_check",
+        "type_check",
+        "type_check",
+        "type_check"
+      ],
+      "metrics": {
+        "M1_prompt_tokens": 594,
+        "M7_hallucination_rate": 0.0
+      }
+    },
+    {
+      "task_id": "FT-021",
+      "mode": "cl100k",
+      "passed_at_1": false,
+      "passed_at_5": false,
+      "iterations": 5,
+      "hallucination": true,
+      "tsdc_tiers": {
+        "codebase_rules": "rule1"
+      },
+      "layer_results": [
+        "symbol_check",
+        "symbol_check",
+        "symbol_check",
+        "symbol_check",
+        "symbol_check"
+      ],
+      "metrics": {
+        "M1_prompt_tokens": 646,
+        "M7_hallucination_rate": 1.0
+      }
+    },
+    {
+      "task_id": "FT-022",
+      "mode": "cl100k",
+      "passed_at_1": false,
+      "passed_at_5": false,
+      "iterations": 5,
+      "hallucination": false,
+      "tsdc_tiers": {
+        "codebase_rules": "rule1"
+      },
+      "layer_results": [
+        "type_check",
+        "type_check",
+        "type_check",
+        "type_check",
+        "type_check"
+      ],
+      "metrics": {
+        "M1_prompt_tokens": 825,
+        "M7_hallucination_rate": 0.0
+      }
+    },
+    {
+      "task_id": "FT-023",
+      "mode": "cl100k",
+      "passed_at_1": false,
+      "passed_at_5": false,
+      "iterations": 5,
+      "hallucination": true,
+      "tsdc_tiers": {
+        "codebase_rules": "rule1"
+      },
+      "layer_results": [
+        "symbol_check",
+        "symbol_check",
+        "symbol_check",
+        "symbol_check",
+        "symbol_check"
+      ],
+      "metrics": {
+        "M1_prompt_tokens": 972,
+        "M7_hallucination_rate": 1.0
+      }
+    },
+    {
+      "task_id": "FT-024",
+      "mode": "cl100k",
+      "passed_at_1": false,
+      "passed_at_5": false,
+      "iterations": 5,
+      "hallucination": false,
+      "tsdc_tiers": {
+        "codebase_rules": "rule1"
+      },
+      "layer_results": [
+        "type_check",
+        "type_check",
+        "type_check",
+        "type_check",
+        "type_check"
+      ],
+      "metrics": {
+        "M1_prompt_tokens": 538,
+        "M7_hallucination_rate": 0.0
+      }
+    },
+    {
+      "task_id": "FT-025",
+      "mode": "cl100k",
+      "passed_at_1": false,
+      "passed_at_5": false,
+      "iterations": 5,
+      "hallucination": true,
+      "tsdc_tiers": {
+        "codebase_rules": "rule1"
+      },
+      "layer_results": [
+        "symbol_check",
+        "symbol_check",
+        "symbol_check",
+        "symbol_check",
+        "symbol_check"
+      ],
+      "metrics": {
+        "M1_prompt_tokens": 1129,
+        "M7_hallucination_rate": 1.0
+      }
+    }
+  ]
+}

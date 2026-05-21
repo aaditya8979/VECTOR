@@ -1,0 +1,109 @@
+{
+  "name": "vector-coder",
+  "displayName": "VECTOR — Verified Code Modifier",
+  "description": "Local, offline, hallucination-free code modification using Qwen 2.5 Coder 7B. Works with Python, TypeScript, Go, Rust, C/C++.",
+  "version": "1.0.0",
+  "publisher": "vector-ai",
+  "license": "MIT",
+  "engines": { "vscode": "^1.90.0" },
+  "categories": ["AI", "Programming Languages", "Other"],
+  "keywords": ["AI", "code", "modification", "offline", "local", "LLM"],
+  "activationEvents": ["onStartupFinished"],
+  "main": "./out/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "vector.modify",
+        "title": "⚡ VECTOR: Modify Function",
+        "category": "VECTOR"
+      },
+      {
+        "command": "vector.init",
+        "title": "VECTOR: Initialize Project",
+        "category": "VECTOR"
+      },
+      {
+        "command": "vector.status",
+        "title": "VECTOR: Show Status",
+        "category": "VECTOR"
+      },
+      {
+        "command": "vector.resume",
+        "title": "VECTOR: Resume Last Task",
+        "category": "VECTOR"
+      }
+    ],
+    "menus": {
+      "editor/context": [
+        {
+          "command": "vector.modify",
+          "when": "editorFocus && resourceLangId =~ /python|typescript|javascript|go|rust|cpp/",
+          "group": "1_modification@1"
+        }
+      ],
+      "commandPalette": [
+        { "command": "vector.modify" },
+        { "command": "vector.init" },
+        { "command": "vector.status" },
+        { "command": "vector.resume" }
+      ]
+    },
+    "keybindings": [
+      {
+        "command": "vector.modify",
+        "key": "ctrl+shift+v",
+        "mac": "cmd+shift+v",
+        "when": "editorFocus"
+      }
+    ],
+    "configuration": {
+      "title": "VECTOR",
+      "properties": {
+        "vector.pythonPath": {
+          "type": "string",
+          "default": "python3",
+          "description": "Path to the Python interpreter with VECTOR installed"
+        },
+        "vector.agentPath": {
+          "type": "string",
+          "default": "",
+          "description": "Absolute path to tsdc-agent/main.py (auto-detected if empty)"
+        },
+        "vector.backend": {
+          "type": "string",
+          "enum": ["auto", "mlx", "ollama", "llamacpp"],
+          "default": "auto",
+          "description": "Inference backend. 'auto' tries MLX (Apple Silicon) first, then Ollama."
+        },
+        "vector.ollamaUrl": {
+          "type": "string",
+          "default": "http://localhost:11434",
+          "description": "Ollama server URL (for Windows/Linux users)"
+        },
+        "vector.ollamaModel": {
+          "type": "string",
+          "default": "qwen2.5-coder:7b",
+          "description": "Ollama model name to use"
+        },
+        "vector.maxAttempts": {
+          "type": "number",
+          "default": 5,
+          "minimum": 1,
+          "maximum": 10,
+          "description": "Maximum verification attempts before giving up"
+        }
+      }
+    }
+  },
+  "scripts": {
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "package": "npx @vscode/vsce package"
+  },
+  "devDependencies": {
+    "@types/vscode": "^1.90.0",
+    "@types/node": "^20.0.0",
+    "typescript": "^5.4.0",
+    "@vscode/vsce": "^2.24.0"
+  }
+}
