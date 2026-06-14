@@ -1,13 +1,22 @@
 {
   "name": "vector-coder",
-  "displayName": "VECTOR — Verified Code Modifier",
-  "description": "Local, offline, hallucination-free code modification using Qwen 2.5 Coder 7B. Works with Python, TypeScript, Go, Rust, C/C++.",
+  "displayName": "VECTOR — Verified Local Code Modifier",
+  "description": "Right-click any function → describe changes in plain English → VECTOR modifies, verifies (5 layers), and shows a diff. 100% local, offline, hallucination-free. Auto-detects Ollama, MLX, and GGUF models on your system.",
   "version": "1.0.0",
-  "publisher": "vector-ai",
+  "publisher": "aaditya8979",
   "license": "MIT",
+  "icon": "icon.png",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/aaditya8979/VECTOR"
+  },
   "engines": { "vscode": "^1.90.0" },
-  "categories": ["AI", "Programming Languages", "Other"],
-  "keywords": ["AI", "code", "modification", "offline", "local", "LLM"],
+  "categories": ["AI", "Programming Languages", "Machine Learning", "Other"],
+  "keywords": [
+    "AI", "code modification", "offline", "local LLM", "code agent",
+    "Ollama", "MLX", "Qwen", "code review", "verified",
+    "hallucination-free", "LLMOps", "code assistant"
+  ],
   "activationEvents": ["onStartupFinished"],
   "main": "./out/extension.js",
   "contributes": {
@@ -15,29 +24,45 @@
       {
         "command": "vector.modify",
         "title": "⚡ VECTOR: Modify Function",
-        "category": "VECTOR"
+        "category": "VECTOR",
+        "icon": "$(zap)"
       },
       {
         "command": "vector.init",
         "title": "VECTOR: Initialize Project",
-        "category": "VECTOR"
+        "category": "VECTOR",
+        "icon": "$(database)"
       },
       {
         "command": "vector.status",
         "title": "VECTOR: Show Status",
-        "category": "VECTOR"
+        "category": "VECTOR",
+        "icon": "$(info)"
       },
       {
         "command": "vector.resume",
         "title": "VECTOR: Resume Last Task",
-        "category": "VECTOR"
+        "category": "VECTOR",
+        "icon": "$(play)"
+      },
+      {
+        "command": "vector.healthCheck",
+        "title": "VECTOR: Health Check",
+        "category": "VECTOR",
+        "icon": "$(heart)"
+      },
+      {
+        "command": "vector.detectEnvironment",
+        "title": "VECTOR: Detect Local Models",
+        "category": "VECTOR",
+        "icon": "$(search)"
       }
     ],
     "menus": {
       "editor/context": [
         {
           "command": "vector.modify",
-          "when": "editorFocus && resourceLangId =~ /python|typescript|javascript|go|rust|cpp/",
+          "when": "editorFocus && resourceLangId =~ /python|typescript|javascript|go|rust|cpp|c|typescriptreact/",
           "group": "1_modification@1"
         }
       ],
@@ -45,14 +70,16 @@
         { "command": "vector.modify" },
         { "command": "vector.init" },
         { "command": "vector.status" },
-        { "command": "vector.resume" }
+        { "command": "vector.resume" },
+        { "command": "vector.healthCheck" },
+        { "command": "vector.detectEnvironment" }
       ]
     },
     "keybindings": [
       {
         "command": "vector.modify",
-        "key": "ctrl+shift+v",
-        "mac": "cmd+shift+v",
+        "key": "ctrl+shift+m",
+        "mac": "cmd+shift+m",
         "when": "editorFocus"
       }
     ],
@@ -62,43 +89,119 @@
         "vector.pythonPath": {
           "type": "string",
           "default": "python3",
-          "description": "Path to the Python interpreter with VECTOR installed"
+          "description": "Path to Python 3.10+ interpreter. Auto-detected on first run.",
+          "order": 1
         },
         "vector.agentPath": {
           "type": "string",
           "default": "",
-          "description": "Absolute path to tsdc-agent/main.py (auto-detected if empty)"
+          "description": "Absolute path to tsdc-agent/main.py. Leave empty for auto-detection.",
+          "order": 2
         },
         "vector.backend": {
           "type": "string",
           "enum": ["auto", "mlx", "ollama", "llamacpp"],
           "default": "auto",
-          "description": "Inference backend. 'auto' tries MLX (Apple Silicon) first, then Ollama."
+          "enumDescriptions": [
+            "Auto-detect: tries MLX on Apple Silicon, then Ollama, then llama.cpp",
+            "MLX: Apple Silicon native (fastest on Mac M1/M2/M3/M4)",
+            "Ollama: Cross-platform, easiest setup (Windows/Linux/Mac)",
+            "llama.cpp: Direct GGUF file inference"
+          ],
+          "description": "Which inference backend to use. 'auto' scans your system and picks the best one.",
+          "order": 3
         },
         "vector.ollamaUrl": {
           "type": "string",
           "default": "http://localhost:11434",
-          "description": "Ollama server URL (for Windows/Linux users)"
+          "description": "Ollama server URL. Only needed if running Ollama on a non-default port.",
+          "order": 4
         },
         "vector.ollamaModel": {
           "type": "string",
           "default": "qwen2.5-coder:7b",
-          "description": "Ollama model name to use"
+          "description": "Ollama model name. Auto-detected if you have code models installed.",
+          "order": 5
         },
         "vector.maxAttempts": {
           "type": "number",
           "default": 5,
           "minimum": 1,
           "maximum": 10,
-          "description": "Maximum verification attempts before giving up"
+          "description": "Maximum verification attempts before giving up. Each attempt re-generates and re-verifies through all 5 layers.",
+          "order": 6
+        },
+        "vector.showWelcome": {
+          "type": "boolean",
+          "default": true,
+          "description": "Show the guided setup walkthrough on first install.",
+          "order": 7
         }
       }
-    }
+    },
+    "walkthroughs": [
+      {
+        "id": "vector.welcome",
+        "title": "Get Started with VECTOR",
+        "description": "Set up local, offline, verified code modification in 5 minutes.",
+        "steps": [
+          {
+            "id": "vector.welcome.intro",
+            "title": "Welcome to VECTOR",
+            "description": "VECTOR uses a local LLM on your machine to modify code — then verifies every change through 5 deterministic layers before applying it. Zero cloud. Zero API keys. Zero hallucinations reach your code.\n\n**Supported:** Python, TypeScript, JavaScript, Go, Rust, C/C++, TSX\n\n[Learn More](https://github.com/aaditya8979/VECTOR)",
+            "media": {
+              "markdown": "media/welcome.md"
+            }
+          },
+          {
+            "id": "vector.welcome.detect",
+            "title": "Scan Your Environment",
+            "description": "VECTOR auto-detects local LLMs already on your system — Ollama models, MLX models, and GGUF files. Let's see what you have.\n\n[Scan My System](command:vector.detectEnvironment)",
+            "media": {
+              "markdown": "media/detect.md"
+            }
+          },
+          {
+            "id": "vector.welcome.model",
+            "title": "Get a Code Model",
+            "description": "VECTOR works best with **Qwen 2.5 Coder 7B** but supports any code model.\n\n**Recommended (all platforms):**\n```\nollama pull qwen2.5-coder:7b\n```\n\n**Mac with Apple Silicon (fastest):**\n```\npip install mlx-lm\n```\n\nSkip this step if a model was already detected.\n\n[Open Terminal](command:workbench.action.terminal.new)",
+            "media": {
+              "markdown": "media/model.md"
+            }
+          },
+          {
+            "id": "vector.welcome.deps",
+            "title": "Install Dependencies",
+            "description": "VECTOR needs a few Python packages for code analysis.\n\n```\npip install tree-sitter tree-sitter-python networkx watchdog rich click mypy pytest\n```\n\nOr install everything at once from the requirements file.\n\n[Open Terminal](command:workbench.action.terminal.new)",
+            "media": {
+              "markdown": "media/deps.md"
+            }
+          },
+          {
+            "id": "vector.welcome.init",
+            "title": "Initialize Your Project",
+            "description": "Build the Code Property Graph (CPG) for your workspace. This maps every function and its relationships.\n\nOpen the Command Palette and run **VECTOR: Initialize Project**.\n\n[Initialize Project](command:vector.init)",
+            "media": {
+              "markdown": "media/init.md"
+            }
+          },
+          {
+            "id": "vector.welcome.try",
+            "title": "Make Your First Modification",
+            "description": "You're all set! Try it:\n\n1. Open any supported source file\n2. Press **Cmd+Shift+M** (Mac) or **Ctrl+Shift+M** (Windows/Linux)\n3. Select a function and describe what to change\n4. Review the diff → Accept or Revert\n\n[Run Health Check](command:vector.healthCheck)",
+            "media": {
+              "markdown": "media/try.md"
+            }
+          }
+        ]
+      }
+    ]
   },
   "scripts": {
     "compile": "tsc -p ./",
     "watch": "tsc -watch -p ./",
-    "package": "npx @vscode/vsce package"
+    "package": "npx @vscode/vsce package --no-dependencies",
+    "lint": "tsc --noEmit"
   },
   "devDependencies": {
     "@types/vscode": "^1.90.0",

@@ -1,3 +1,10 @@
+/**
+ * functionPicker.ts — Function Selection with Icons and Class Context
+ *
+ * Shows a QuickPick of all functions in the file from the CPG.
+ * Auto-selects if only one function exists.
+ * Falls back to cursor-position detection if CPG isn't available.
+ */
 import * as vscode from 'vscode';
 import * as cp from 'child_process';
 import * as path from 'path';
@@ -27,43 +34,55 @@ export class FunctionPicker {
 
         try {
             functions = await this.getFunctionsFromCPG(relPath);
-        } catch (err) {
-            vscode.window.showErrorMessage(`VECTOR: Failed to query CPG — ${err}`);
-            return undefined;
+        } catch {
+            functions = [];
         }
 
         if (functions.length === 0) {
-            // Fall back to cursor-position detection
             return this.detectFromCursor();
         }
 
         if (functions.length === 1) {
             vscode.window.setStatusBarMessage(
                 `⚡ VECTOR: auto-selected \`${functions[0].name}\``,
-                3000
+                3000,
             );
             return functions[0].name;
         }
 
-        // Multiple functions — show QuickPick
-        const items: vscode.QuickPickItem[] = functions.map(f => ({
-            label: f.name,
-            description: f.class_name ? `(in ${f.class_name})` : '',
-            detail: `  Line ${f.line}   ${f.signature}`,
-        }));
+        // Multiple functions — show QuickPick with icons
+        const items: vscode.QuickPickItem[] = functions.map(f => {
+            const icon = f.class_name ? '$(symbol-method)' : '$(symbol-function)';
+            const classCtx = f.class_name ? `${f.class_name}.` : '';
+            return {
+                label: `${icon} ${classCtx}${f.name}`,
+                description: `line ${f.line}`,
+                detail: `    ${f.signature}`,
+            };
+        });
 
         const selected = await vscode.window.showQuickPick(items, {
-            placeHolder: 'Select function to modify',
+            title: '⚡ VECTOR — Select Function to Modify',
+            placeHolder: 'Choose a function (type to filter)',
             matchOnDetail: true,
             matchOnDescription: true,
         });
 
-        return selected?.label;
+        if (!selected) { return undefined; }
+
+        // Extract function name from label (remove icon prefix and class context)
+        const label = selected.label;
+        const match = label.match(/\)\s*(?:\w+\.)?(\w+)$/);
+        if (match) { return match[1]; }
+
+        // Fallback: find the original function node
+        const idx = items.indexOf(selected);
+        return idx >= 0 ? functions[idx].name : undefined;
     }
 
     /**
      * Falls back to detecting a function name from the cursor position
-     * using a simple regex over the current line range.
+     * using regex over the current line range.
      */
     private detectFromCursor(): Promise<string | undefined> {
         return new Promise((resolve) => {
@@ -73,13 +92,13 @@ export class FunctionPicker {
             const cursorLine = editor.selection.active.line;
             const doc = editor.document;
 
-            // Scan upward from cursor to find the nearest function definition
             const funcPatterns: RegExp[] = [
-                /^\s*def\s+(\w+)\s*\(/,                          // Python
-                /^\s*(?:async\s+)?function\s+(\w+)\s*\(/,        // JS/TS
-                /^\s*export\s+(?:async\s+)?function\s+(\w+)\s*\(/, // TS export
-                /^\s*func\s+(?:\([^)]+\)\s+)?(\w+)\s*\(/,        // Go
-                /^\s*(?:pub\s+)?(?:async\s+)?fn\s+(\w+)\s*\(/,   // Rust
+                /^\s*(?:async\s+)?def\s+(\w+)\s*\(/,                  // Python
+                /^\s*(?:export\s+)?(?:async\s+)?function\s+(\w+)\s*\(/, // JS/TS
+                /^\s*(?:const|let|var)\s+(\w+)\s*=\s*(?:async\s+)?\(/, // Arrow functions
+                /^\s*func\s+(?:\([^)]+\)\s+)?(\w+)\s*\(/,              // Go
+                /^\s*(?:pub\s+)?(?:async\s+)?fn\s+(\w+)\s*[<(]/,      // Rust
+                /^\s*(?:virtual\s+|static\s+)?[\w:]+\s+(\w+)\s*\(/,   // C/C++ (loose)
             ];
 
             for (let i = cursorLine; i >= Math.max(0, cursorLine - 50); i--) {
@@ -88,8 +107,8 @@ export class FunctionPicker {
                     const m = lineText.match(re);
                     if (m) {
                         vscode.window.setStatusBarMessage(
-                            `⚡ VECTOR: detected \`${m[1]}\` from cursor`,
-                            3000
+                            `⚡ VECTOR: detected \`${m[1]}\` from cursor position`,
+                            3000,
                         );
                         resolve(m[1]);
                         return;
@@ -97,35 +116,37 @@ export class FunctionPicker {
                 }
             }
 
-            // Prompt manually as a last resort
+            // Last resort: ask manually
             vscode.window.showInputBox({
-                prompt: 'CPG not initialized. Enter function name manually:',
+                title: '⚡ VECTOR — Function Name',
+                prompt: 'CPG not available. Enter the function name manually:',
                 placeHolder: 'my_function',
             }).then(resolve);
         });
     }
 
     private getFunctionsFromCPG(relPath: string): Promise<FunctionNode[]> {
-        return new Promise((resolve, reject) => {
+        return new Promise((resolve) => {
             const python = vscode.workspace.getConfiguration('vector')
                 .get<string>('pythonPath', 'python3');
             const agentPath = this.resolveAgentPath();
 
+            if (!fs.existsSync(agentPath)) {
+                resolve([]);
+                return;
+            }
+
             cp.exec(
-                `${python} "${agentPath}" list-functions "${relPath}" --project "${this.workspaceRoot}" --json`,
+                `"${python}" "${agentPath}" list-functions "${relPath}" --project "${this.workspaceRoot}" --json`,
                 { cwd: this.workspaceRoot, timeout: 10_000 },
-                (err, stdout, stderr) => {
-                    if (err) {
-                        // Non-fatal: fall back to cursor detection
-                        resolve([]);
-                        return;
-                    }
+                (err, stdout) => {
+                    if (err) { resolve([]); return; }
                     try {
                         resolve(JSON.parse(stdout) as FunctionNode[]);
                     } catch {
                         resolve([]);
                     }
-                }
+                },
             );
         });
     }
@@ -133,8 +154,15 @@ export class FunctionPicker {
     private resolveAgentPath(): string {
         const configured = vscode.workspace.getConfiguration('vector')
             .get<string>('agentPath', '');
-        if (configured) return configured;
-        const candidate = path.join(this.workspaceRoot, 'main.py');
-        return fs.existsSync(candidate) ? candidate : 'main.py';
+        if (configured) { return configured; }
+        const candidates = [
+            path.join(this.workspaceRoot, 'main.py'),
+            path.join(this.workspaceRoot, 'tsdc-agent', 'main.py'),
+            path.join(this.workspaceRoot, '..', 'tsdc-agent', 'main.py'),
+        ];
+        for (const c of candidates) {
+            if (fs.existsSync(c)) { return c; }
+        }
+        return path.join(this.workspaceRoot, 'main.py');
     }
 }

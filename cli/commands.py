@@ -322,7 +322,9 @@ def modify(
 
 @click.command()
 @click.argument("project_root", default=".", type=click.Path(exists=True))
-def status(project_root: str):
+@click.option("--json", "as_json", is_flag=True, default=False,
+              help="Output status as JSON (for editor integration).")
+def status(project_root: str, as_json: bool):
     """Show CPG statistics, task history, and metrics summary."""
     from benchmark.metrics import MetricsStore
 
@@ -330,6 +332,25 @@ def status(project_root: str):
     builder, db, knowledge = _load_system(project_root)
     paths = _get_brain_paths(project_root)
 
+    stale    = sum(1 for n in builder.nodes.values() if n.is_stale)
+    ki_stats = knowledge.stats()
+    last     = db.get_last_incomplete_task()
+
+    # ── JSON output for VS Code extension ────────────────────────────────
+    if as_json:
+        import json as _json
+        data = {
+            "nodes":           len(builder.nodes),
+            "edges":           builder.graph.number_of_edges(),
+            "stale_nodes":     stale,
+            "knowledge_items": ki_stats["total_rules"],
+            "watching":        False,   # Can't tell from CLI — watcher is a daemon
+            "last_task":       last["description"] if last else None,
+        }
+        print(_json.dumps(data))
+        return
+
+    # ── Rich terminal output ─────────────────────────────────────────────
     console.print(f"\n[bold blue]TSDC Project Status[/bold blue]")
     console.print(f"  Root: {project_root}\n")
 
@@ -339,17 +360,14 @@ def status(project_root: str):
     table.add_column("Value",   justify="right")
     table.add_row("Function nodes",   str(len(builder.nodes)))
     table.add_row("Call graph edges", str(builder.graph.number_of_edges()))
-    stale = sum(1 for n in builder.nodes.values() if n.is_stale)
     table.add_row("Stale nodes",      f"[yellow]{stale}[/yellow]" if stale else "0")
     console.print(table)
 
     # Knowledge
-    ki_stats = knowledge.stats()
     console.print(f"\n  Knowledge Items: {ki_stats['total_rules']}")
     console.print(f"  Avg KI hit rate: {ki_stats['avg_hit_rate']*100:.1f}%")
 
     # Last task
-    last = db.get_last_incomplete_task()
     if last:
         console.print(f"\n  [yellow]Incomplete task #{last['id']}: {last['description']}[/yellow]")
         console.print(f"  Target: {last['target_file']}::{last['target_func']}")
