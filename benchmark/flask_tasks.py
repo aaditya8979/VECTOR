@@ -300,6 +300,102 @@ FLASK_TASKS = [
         "test_guard": "",
         "difficulty": "easy",
     },
+
+    # ── blueprints.py tasks (2) ──────────────────────────────────────────
+    {
+        "id":       "FT-026",
+        "category": "validation",
+        "file_path": "src/flask/blueprints.py",
+        "func_name": "register",
+        "goal":     "raise ValueError if the blueprint name contains a dot character",
+        "expected_symbols": ["ValueError"],
+        "forbidden_symbols": [],
+        "test_guard": "",
+        "difficulty": "easy",
+    },
+    {
+        "id":       "FT-027",
+        "category": "timing",
+        "file_path": "src/flask/blueprints.py",
+        "func_name": "record_once",
+        "goal":     "log the callback function name at DEBUG level when recording",
+        "expected_symbols": ["logging.debug"],
+        "forbidden_symbols": [],
+        "test_guard": "",
+        "difficulty": "easy",
+    },
+
+    # ── testing.py tasks (2) ─────────────────────────────────────────────
+    {
+        "id":       "FT-028",
+        "category": "validation",
+        "file_path": "src/flask/testing.py",
+        "func_name": "make_test_environ_builder",
+        "goal":     "raise ValueError if the path argument does not start with a forward slash",
+        "expected_symbols": ["ValueError"],
+        "forbidden_symbols": [],
+        "test_guard": "",
+        "difficulty": "easy",
+    },
+    {
+        "id":       "FT-029",
+        "category": "observability",
+        "file_path": "src/flask/testing.py",
+        "func_name": "open",
+        "goal":     "log the request method and URL at DEBUG level before making the test request",
+        "expected_symbols": ["logging.debug"],
+        "forbidden_symbols": [],
+        "test_guard": "",
+        "difficulty": "easy",
+    },
+
+    # ── wrappers.py tasks (2) ────────────────────────────────────────────
+    {
+        "id":       "FT-030",
+        "category": "error_handling",
+        "file_path": "src/flask/wrappers.py",
+        "func_name": "on_json_loading_failed",
+        "goal":     "log the JSON parsing error message at WARNING level before raising",
+        "expected_symbols": ["logging.warning"],
+        "forbidden_symbols": [],
+        "test_guard": "",
+        "difficulty": "easy",
+    },
+    {
+        "id":       "FT-031",
+        "category": "timing",
+        "file_path": "src/flask/wrappers.py",
+        "func_name": "close",
+        "goal":     "log the response status code and content length at DEBUG level when the response is closed",
+        "expected_symbols": ["logging.debug"],
+        "forbidden_symbols": [],
+        "test_guard": "",
+        "difficulty": "medium",
+    },
+
+    # ── templating.py + debughelpers.py tasks (2) ────────────────────────
+    {
+        "id":       "FT-032",
+        "category": "logging",
+        "file_path": "src/flask/templating.py",
+        "func_name": "render_template",
+        "goal":     "log the template name at DEBUG level before rendering",
+        "expected_symbols": ["logging.debug"],
+        "forbidden_symbols": [],
+        "test_guard": "",
+        "difficulty": "easy",
+    },
+    {
+        "id":       "FT-033",
+        "category": "observability",
+        "file_path": "src/flask/debughelpers.py",
+        "func_name": "explain_template_loading_attempts",
+        "goal":     "log the number of template loaders checked at DEBUG level",
+        "expected_symbols": ["logging.debug"],
+        "forbidden_symbols": [],
+        "test_guard": "",
+        "difficulty": "easy",
+    },
 ]
 
 class FlaskAblationRunner:
@@ -530,3 +626,124 @@ class FlaskAblationRunner:
 
         print(f"\n[Ablation v2] Complete — {total} runs across {len(FLASK_TASKS)} tasks × {len(modes)} modes.")
         return results
+
+    def run_all_with_repeats(
+        self,
+        n_repeats: int = 3,
+        modes: tuple = ("full", "no_ki", "no_sandbox", "cl100k"),
+        tasks: list = None,
+        checkpoint_path: str = "results/flask/ablation_results_v3_repeats.json",
+    ) -> dict:
+        """
+        Run the full ablation n_repeats times for statistical significance.
+        Each repeat uses a different random seed via temperature variance.
+
+        Returns:
+            {
+                "runs": [
+                    {"run_id": 0, "mode": "full", "results": [...]},
+                    {"run_id": 0, "mode": "no_ki", "results": [...]},
+                    ...
+                ],
+                "summary": {
+                    "full": {"pass_at_1_mean": 0.12, "pass_at_1_std": 0.021, ...},
+                    ...
+                }
+            }
+        """
+        import json as _json
+        from pathlib import Path as _Path
+        from statistics import mean as _mean, stdev as _stdev
+
+        task_list = tasks or FLASK_TASKS
+        ckpt = _Path(checkpoint_path)
+        ckpt.parent.mkdir(parents=True, exist_ok=True)
+
+        # Load checkpoint
+        all_runs: list = []
+        if ckpt.exists():
+            try:
+                saved = _json.loads(ckpt.read_text())
+                all_runs = saved.get("runs", [])
+                print(f"[Checkpoint] Resuming — {len(all_runs)} run×mode batches done.")
+            except Exception:
+                pass
+
+        done = {(r["run_id"], r["mode"]) for r in all_runs}
+
+        total_batches = n_repeats * len(modes)
+        finished = len(done)
+
+        for run_id in range(n_repeats):
+            for mode in modes:
+                if (run_id, mode) in done:
+                    print(f"  [skip] run={run_id} mode={mode} (checkpoint)")
+                    continue
+
+                finished += 1
+                print(f"\n[Run {run_id+1}/{n_repeats}] [{finished}/{total_batches}] Mode: {mode}")
+
+                run_results = []
+                for task in task_list:
+                    print(f"  Task {task['id']} ({task['func_name']})")
+                    res = self.run_task(task, mode)
+                    res["run_id"] = run_id
+                    run_results.append(res)
+
+                all_runs.append({
+                    "run_id": run_id,
+                    "mode": mode,
+                    "results": run_results,
+                })
+
+                # Checkpoint
+                ckpt.write_text(_json.dumps({"runs": all_runs}, indent=2))
+
+        # Compute summary statistics
+        summary = {}
+        for mode in modes:
+            mode_runs = [r for r in all_runs if r["mode"] == mode]
+            if not mode_runs:
+                continue
+
+            pass_at_1_per_run = []
+            pass_at_5_per_run = []
+            hall_per_run = []
+            iters_per_run = []
+
+            for batch in mode_runs:
+                results = batch["results"]
+                n = len(results) if results else 1
+                p1 = sum(1 for r in results if r.get("passed_at_1")) / n
+                p5 = sum(1 for r in results if r.get("passed_at_5")) / n
+                h = sum(r.get("metrics", {}).get("M7_hallucination_rate", 0) for r in results) / n
+                it = sum(r.get("iterations", 1) for r in results) / n
+                pass_at_1_per_run.append(p1)
+                pass_at_5_per_run.append(p5)
+                hall_per_run.append(h)
+                iters_per_run.append(it)
+
+            def _safe_std(vals):
+                return round(_stdev(vals), 4) if len(vals) > 1 else 0.0
+
+            summary[mode] = {
+                "pass_at_1_mean": round(_mean(pass_at_1_per_run), 4),
+                "pass_at_1_std":  _safe_std(pass_at_1_per_run),
+                "pass_at_5_mean": round(_mean(pass_at_5_per_run), 4),
+                "pass_at_5_std":  _safe_std(pass_at_5_per_run),
+                "halluc_mean":    round(_mean(hall_per_run), 4),
+                "halluc_std":     _safe_std(hall_per_run),
+                "iters_mean":     round(_mean(iters_per_run), 2),
+                "iters_std":      _safe_std(iters_per_run),
+                "n_runs":         len(mode_runs),
+            }
+
+        output = {"runs": all_runs, "summary": summary}
+        ckpt.write_text(_json.dumps(output, indent=2))
+        print(f"\n[Summary] Saved to {checkpoint_path}")
+        for mode, s in summary.items():
+            print(f"  {mode:15s} | pass@1={s['pass_at_1_mean']:.1%}±{s['pass_at_1_std']:.1%} "
+                  f"| pass@5={s['pass_at_5_mean']:.1%}±{s['pass_at_5_std']:.1%} "
+                  f"| hall={s['halluc_mean']:.1%}±{s['halluc_std']:.1%}")
+        return output
+

@@ -1,0 +1,207 @@
+{
+  "total_tasks": 25,
+  "total_failed": 25,
+  "total_passed": 0,
+  "pass_rate": "0.0%",
+  "category_counts_worst_n": {
+    "symbol_hallucination": 10
+  },
+  "category_counts_all": {
+    "symbol_hallucination": 19,
+    "test_guard_strict": 1,
+    "type_mismatch": 5
+  },
+  "worst_tasks": [
+    {
+      "task_id": "FT-001",
+      "mode": "full",
+      "category": "symbol_hallucination",
+      "category_description": "Model invents a function/method that doesn't exist in the codebase",
+      "layer_history": [
+        "symbol_check",
+        "symbol_check",
+        "symbol_check",
+        "symbol_check",
+        "symbol_check"
+      ],
+      "layer_summary": {
+        "symbol_check": 5
+      },
+      "iterations_used": 5,
+      "hallucination_rate": 1.0,
+      "explanation": "Task FT-001 failed all 5 attempts at symbol_check. The model consistently generated function calls not present in the CPG's allowed callee list. The hallucination rate was 100%."
+    },
+    {
+      "task_id": "FT-002",
+      "mode": "full",
+      "category": "symbol_hallucination",
+      "category_description": "Model invents a function/method that doesn't exist in the codebase",
+      "layer_history": [
+        "symbol_check",
+        "symbol_check",
+        "symbol_check",
+        "symbol_check",
+        "symbol_check"
+      ],
+      "layer_summary": {
+        "symbol_check": 5
+      },
+      "iterations_used": 5,
+      "hallucination_rate": 1.0,
+      "explanation": "Task FT-002 failed all 5 attempts at symbol_check. The model consistently generated function calls not present in the CPG's allowed callee list. The hallucination rate was 100%."
+    },
+    {
+      "task_id": "FT-003",
+      "mode": "full",
+      "category": "symbol_hallucination",
+      "category_description": "Model invents a function/method that doesn't exist in the codebase",
+      "layer_history": [
+        "symbol_check",
+        "symbol_check",
+        "symbol_check",
+        "symbol_check",
+        "symbol_check"
+      ],
+      "layer_summary": {
+        "symbol_check": 5
+      },
+      "iterations_used": 5,
+      "hallucination_rate": 1.0,
+      "explanation": "Task FT-003 failed all 5 attempts at symbol_check. The model consistently generated function calls not present in the CPG's allowed callee list. The hallucination rate was 100%."
+    },
+    {
+      "task_id": "FT-004",
+      "mode": "full",
+      "category": "symbol_hallucination",
+      "category_description": "Model invents a function/method that doesn't exist in the codebase",
+      "layer_history": [
+        "symbol_check",
+        "symbol_check",
+        "symbol_check",
+        "symbol_check",
+        "symbol_check"
+      ],
+      "layer_summary": {
+        "symbol_check": 5
+      },
+      "iterations_used": 5,
+      "hallucination_rate": 1.0,
+      "explanation": "Task FT-004 failed all 5 attempts at symbol_check. The model consistently generated function calls not present in the CPG's allowed callee list. The hallucination rate was 100%."
+    },
+    {
+      "task_id": "FT-005",
+      "mode": "full",
+      "category": "symbol_hallucination",
+      "category_description": "Model invents a function/method that doesn't exist in the codebase",
+      "layer_history": [
+        "symbol_check",
+        "symbol_check",
+        "symbol_check",
+        "symbol_check",
+        "symbol_check"
+      ],
+      "layer_summary": {
+        "symbol_check": 5
+      },
+      "iterations_used": 5,
+      "hallucination_rate": 1.0,
+      "explanation": "Task FT-005 failed all 5 attempts at symbol_check. The model consistently generated function calls not present in the CPG's allowed callee list. The hallucination rate was 100%."
+    },
+    {
+      "task_id": "FT-006",
+      "mode": "full",
+      "category": "symbol_hallucination",
+      "category_description": "Model invents a function/method that doesn't exist in the codebase",
+      "layer_history": [
+        "symbol_check",
+        "symbol_check",
+        "symbol_check",
+        "symbol_check",
+        "symbol_check"
+      ],
+      "layer_summary": {
+        "symbol_check": 5
+      },
+      "iterations_used": 5,
+      "hallucination_rate": 1.0,
+      "explanation": "Task FT-006 failed all 5 attempts at symbol_check. The model consistently generated function calls not present in the CPG's allowed callee list. The hallucination rate was 100%."
+    },
+    {
+      "task_id": "FT-007",
+      "mode": "full",
+      "category": "symbol_hallucination",
+      "category_description": "Model invents a function/method that doesn't exist in the codebase",
+      "layer_history": [
+        "symbol_check",
+        "symbol_check",
+        "symbol_check",
+        "symbol_check",
+        "symbol_check"
+      ],
+      "layer_summary": {
+        "symbol_check": 5
+      },
+      "iterations_used": 5,
+      "hallucination_rate": 1.0,
+      "explanation": "Task FT-007 failed all 5 attempts at symbol_check. The model consistently generated function calls not present in the CPG's allowed callee list. The hallucination rate was 100%."
+    },
+    {
+      "task_id": "FT-008",
+      "mode": "full",
+      "category": "symbol_hallucination",
+      "category_description": "Model invents a function/method that doesn't exist in the codebase",
+      "layer_history": [
+        "symbol_check",
+        "symbol_check",
+        "symbol_check",
+        "symbol_check",
+        "symbol_check"
+      ],
+      "layer_summary": {
+        "symbol_check": 5
+      },
+      "iterations_used": 5,
+      "hallucination_rate": 1.0,
+      "explanation": "Task FT-008 failed all 5 attempts at symbol_check. The model consistently generated function calls not present in the CPG's allowed callee list. The hallucination rate was 100%."
+    },
+    {
+      "task_id": "FT-009",
+      "mode": "full",
+      "category": "symbol_hallucination",
+      "category_description": "Model invents a function/method that doesn't exist in the codebase",
+      "layer_history": [
+        "symbol_check",
+        "symbol_check",
+        "symbol_check",
+        "symbol_check",
+        "symbol_check"
+      ],
+      "layer_summary": {
+        "symbol_check": 5
+      },
+      "iterations_used": 5,
+      "hallucination_rate": 1.0,
+      "explanation": "Task FT-009 failed all 5 attempts at symbol_check. The model consistently generated function calls not present in the CPG's allowed callee list. The hallucination rate was 100%."
+    },
+    {
+      "task_id": "FT-010",
+      "mode": "full",
+      "category": "symbol_hallucination",
+      "category_description": "Model invents a function/method that doesn't exist in the codebase",
+      "layer_history": [
+        "symbol_check",
+        "symbol_check",
+        "symbol_check",
+        "symbol_check",
+        "symbol_check"
+      ],
+      "layer_summary": {
+        "symbol_check": 5
+      },
+      "iterations_used": 5,
+      "hallucination_rate": 1.0,
+      "explanation": "Task FT-010 failed all 5 attempts at symbol_check. The model consistently generated function calls not present in the CPG's allowed callee list. The hallucination rate was 100%."
+    }
+  ],
+  "latex_table": "\\begin{table}[h]\n\\centering\n\\begin{tabular}{l c l}\n\\toprule\nFailure Category & Count & Representative Task \\\\\n\\midrule\n\\texttt{symbol\\_hallucination} & 10 & FT-001 \\\\\n\\bottomrule\n\\end{tabular}\n\\caption{Failure analysis of the 10 worst-performing tasks.}\n\\label{tab:failure-analysis}\n\\end{table}"
+}

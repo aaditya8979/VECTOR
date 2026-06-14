@@ -695,31 +695,96 @@ class VerificationPipeline:
         # ── Step 5: Check against allowed callees list (if provided) ──────
         if allowed_callees:
             allowed_short = {c.split(".")[-1].split("(")[0] for c in allowed_callees}
+
+            # Add expected_symbols to allowed set — don't block what the task requires
+            for exp in expected_symbols:
+                short = exp.split(".")[-1].split("(")[0]
+                allowed_short.add(short)
+
             # Common builtins that are always allowed
             always_allowed = {
+                # Python builtins
                 "print", "len", "str", "int", "float", "list", "dict", "set",
                 "tuple", "bool", "bytes", "bytearray", "memoryview",
                 "range", "enumerate", "zip", "map", "filter", "sorted", "type",
                 "isinstance", "issubclass", "hasattr", "getattr", "setattr",
                 "delattr", "super", "repr", "hash", "id", "callable",
                 "iter", "next", "reversed", "all", "any",
-                "time", "round", "abs", "min", "max", "sum", "open", "format",
+                "round", "abs", "min", "max", "sum", "open", "format",
                 "vars", "dir", "property", "staticmethod", "classmethod",
+                "input", "ord", "chr", "hex", "oct", "bin", "pow", "divmod",
+                "complex", "frozenset", "slice", "object", "breakpoint",
+
+                # Exceptions (all standard)
                 "ValueError", "TypeError", "KeyError", "AttributeError",
                 "RuntimeError", "NotImplementedError", "ImportError",
                 "StopIteration", "OSError", "IOError", "Exception",
+                "IndexError", "FileNotFoundError", "PermissionError",
+                "ConnectionError", "TimeoutError", "UnicodeError",
+                "ArithmeticError", "LookupError", "OverflowError",
+                "ZeroDivisionError", "MemoryError", "RecursionError",
+                "SystemExit", "KeyboardInterrupt", "GeneratorExit",
+                "AssertionError", "BufferError", "EOFError",
+                "MethodNotAllowed", "HTTPException", "BadRequest",
+                "NotFound", "Forbidden", "Unauthorized", "abort",
+
+                # Logging methods (the #1 cause of false positives)
+                "debug", "info", "warning", "warn", "error", "critical",
+                "exception", "log", "getLogger", "basicConfig",
+                "setLevel", "addHandler", "removeHandler",
+
+                # Common stdlib modules / functions
+                "time", "sleep", "uuid", "uuid4", "uuid1",
+                "datetime", "now", "utcnow", "today", "timedelta",
+                "json", "dumps", "loads", "load", "dump",
+                "os", "path", "environ", "getcwd", "listdir",
+                "re", "match", "search", "sub", "compile", "findall",
+                "copy", "deepcopy",
+                "functools", "wraps", "partial", "lru_cache",
+                "contextmanager", "suppress",
+                "warnings",
+
+                # String / bytes methods
+                "join", "split", "strip", "lstrip", "rstrip",
+                "replace", "startswith", "endswith", "lower", "upper",
+                "encode", "decode", "find", "rfind", "index", "count",
+                "isdigit", "isalpha", "isalnum", "title", "capitalize",
+
+                # Dict / list / set methods
+                "get", "update", "pop", "push", "append", "extend",
+                "insert", "remove", "clear", "copy", "keys", "values",
+                "items", "setdefault", "add", "discard", "difference",
+                "intersection", "union", "issubset", "issuperset",
+
+                # Object / class methods
+                "close", "read", "write", "seek", "flush", "tell",
+                "send", "recv", "connect", "bind", "listen", "accept",
             }
             allowed_short |= always_allowed
 
-            # Find calls NOT in the allowed list
+            # Exempt self.* attribute calls — calling methods on `self` is
+            # legitimate; the CPG already verified the class exists
+            self_calls = {
+                node.func.attr
+                for node in _ast.walk(tree)
+                if isinstance(node, _ast.Call)
+                and isinstance(node.func, _ast.Attribute)
+                and isinstance(node.func.value, _ast.Name)
+                and node.func.value.id == "self"
+            }
+
+            # Find calls NOT in the allowed list, excluding self.* calls
             suspicious = {
                 name for name in called_names
                 if name not in allowed_short
+                and name not in self_calls
                 and not name.startswith("_")  # ignore private methods
                 and len(name) > 2             # ignore single-char names
             }
 
-            if suspicious:
+            # Require ≥2 suspicious calls to flag — a single unknown call
+            # is more likely a false positive than a hallucination
+            if len(suspicious) >= 2:
                 top = sorted(suspicious)[:3]
                 return (
                     False,

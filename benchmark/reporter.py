@@ -54,17 +54,63 @@ class PaperReporter:
 
     def table2_ablation(self, results_path: str) -> str:
         """
-        Generates Table 2: Flask Ablation study.
+        Generates Table 2: Ablation study.
         
-        Shows pass@1, pass@5, hallucination rate, and average iterations
-        across the different pipeline modes.
+        Supports both:
+          - v2 format (single run):  {mode: [results...]}
+          - v3 format (with repeats): {runs: [...], summary: {...}}
+        
+        v3 format shows mean ± std across runs.
         """
         path = Path(results_path)
         if not path.exists():
             return "[Error: Ablation results file not found]"
             
         data = json.loads(path.read_text())
-        
+
+        # ── v3 repeats format ────────────────────────────────────────────
+        if "summary" in data:
+            summary = data["summary"]
+            n_tasks = 0
+            if data.get("runs"):
+                n_tasks = len(data["runs"][0].get("results", []))
+
+            table = (
+                "\\begin{table}[h]\n"
+                "\\centering\n"
+                "\\begin{tabular}{l c c c c}\n"
+                "\\toprule\n"
+                "Condition & pass@1 & pass@5 & Hallucination & Avg Iters \\\\\n"
+                "\\midrule\n"
+            )
+
+            for mode, s in summary.items():
+                name = {
+                    "full": "\\textbf{Full VECTOR}",
+                    "no_ki": "No KI (Tier 7)",
+                    "no_sandbox": "No Sandbox (Layer 5)",
+                    "cl100k": "GPT-4 Tokenizer (cl100k)",
+                }.get(mode, mode)
+
+                p1 = f"{s['pass_at_1_mean']:.1%} $\\pm$ {s['pass_at_1_std']:.1%}"
+                p5 = f"{s['pass_at_5_mean']:.1%} $\\pm$ {s['pass_at_5_std']:.1%}"
+                hall = f"{s['halluc_mean']:.1%} $\\pm$ {s['halluc_std']:.1%}"
+                iters = f"{s['iters_mean']:.1f} $\\pm$ {s['iters_std']:.1f}"
+
+                table += f"{name} & {p1} & {p5} & {hall} & {iters} \\\\\n"
+
+            n_runs = next(iter(summary.values()), {}).get("n_runs", "?")
+            table += (
+                "\\bottomrule\n"
+                "\\end{tabular}\n"
+                f"\\caption{{Ablation study on {n_tasks} tasks "
+                f"({n_runs} runs, mean $\\pm$ std).}}\n"
+                "\\label{tab:ablation}\n"
+                "\\end{table}"
+            )
+            return table
+
+        # ── v2 single-run format ─────────────────────────────────────────
         table = (
             "\\begin{table}[h]\n"
             "\\centering\n"
@@ -92,7 +138,7 @@ class PaperReporter:
         table += (
             "\\bottomrule\n"
             "\\end{tabular}\n"
-            "\\caption{Ablation study on 25 Flask repository tasks.}\n"
+            f"\\caption{{Ablation study on {len(next(iter(data.values())))} tasks.}}\n"
             "\\label{tab:ablation}\n"
             "\\end{table}"
         )
