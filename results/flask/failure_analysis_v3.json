@@ -1,0 +1,211 @@
+{
+  "total_tasks": 33,
+  "total_failed": 27,
+  "total_passed": 6,
+  "pass_rate": "18.2%",
+  "category_counts_worst_n": {
+    "type_mismatch": 3,
+    "symbol_hallucination": 6,
+    "expected_symbol_miss": 1
+  },
+  "category_counts_all": {
+    "type_mismatch": 12,
+    "symbol_hallucination": 12,
+    "expected_symbol_miss": 1,
+    "test_guard_strict": 2
+  },
+  "worst_tasks": [
+    {
+      "task_id": "FT-001",
+      "mode": "full",
+      "category": "type_mismatch",
+      "category_description": "Correct logic but wrong return type or argument type",
+      "layer_history": [
+        "type_check",
+        "type_check",
+        "type_check",
+        "type_check",
+        "type_check"
+      ],
+      "layer_summary": {
+        "type_check": 5
+      },
+      "iterations_used": 5,
+      "hallucination_rate": 0.0,
+      "explanation": "Task FT-001 failed 5/5 attempts at type_check (mypy). The generated code had type annotation mismatches \u2014 likely wrong return type or incompatible argument types."
+    },
+    {
+      "task_id": "FT-003",
+      "mode": "full",
+      "category": "symbol_hallucination",
+      "category_description": "Model invents a function/method that doesn't exist in the codebase",
+      "layer_history": [
+        "symbol_check",
+        "symbol_check",
+        "symbol_check",
+        "symbol_check",
+        "symbol_check"
+      ],
+      "layer_summary": {
+        "symbol_check": 5
+      },
+      "iterations_used": 5,
+      "hallucination_rate": 1.0,
+      "explanation": "Task FT-003 failed all 5 attempts at symbol_check. The model consistently generated function calls not present in the CPG's allowed callee list. The hallucination rate was 100%."
+    },
+    {
+      "task_id": "FT-005",
+      "mode": "full",
+      "category": "symbol_hallucination",
+      "category_description": "Model invents a function/method that doesn't exist in the codebase",
+      "layer_history": [
+        "symbol_check",
+        "symbol_check",
+        "symbol_check",
+        "symbol_check",
+        "symbol_check"
+      ],
+      "layer_summary": {
+        "symbol_check": 5
+      },
+      "iterations_used": 5,
+      "hallucination_rate": 1.0,
+      "explanation": "Task FT-005 failed all 5 attempts at symbol_check. The model consistently generated function calls not present in the CPG's allowed callee list. The hallucination rate was 100%."
+    },
+    {
+      "task_id": "FT-007",
+      "mode": "full",
+      "category": "symbol_hallucination",
+      "category_description": "Model invents a function/method that doesn't exist in the codebase",
+      "layer_history": [
+        "symbol_check",
+        "symbol_check",
+        "symbol_check",
+        "symbol_check",
+        "symbol_check"
+      ],
+      "layer_summary": {
+        "symbol_check": 5
+      },
+      "iterations_used": 5,
+      "hallucination_rate": 1.0,
+      "explanation": "Task FT-007 failed all 5 attempts at symbol_check. The model consistently generated function calls not present in the CPG's allowed callee list. The hallucination rate was 100%."
+    },
+    {
+      "task_id": "FT-009",
+      "mode": "full",
+      "category": "symbol_hallucination",
+      "category_description": "Model invents a function/method that doesn't exist in the codebase",
+      "layer_history": [
+        "symbol_check",
+        "symbol_check",
+        "symbol_check",
+        "symbol_check",
+        "symbol_check"
+      ],
+      "layer_summary": {
+        "symbol_check": 5
+      },
+      "iterations_used": 5,
+      "hallucination_rate": 1.0,
+      "explanation": "Task FT-009 failed all 5 attempts at symbol_check. The model consistently generated function calls not present in the CPG's allowed callee list. The hallucination rate was 100%."
+    },
+    {
+      "task_id": "FT-010",
+      "mode": "full",
+      "category": "symbol_hallucination",
+      "category_description": "Model invents a function/method that doesn't exist in the codebase",
+      "layer_history": [
+        "symbol_check",
+        "symbol_check",
+        "symbol_check",
+        "symbol_check",
+        "symbol_check"
+      ],
+      "layer_summary": {
+        "symbol_check": 5
+      },
+      "iterations_used": 5,
+      "hallucination_rate": 1.0,
+      "explanation": "Task FT-010 failed all 5 attempts at symbol_check. The model consistently generated function calls not present in the CPG's allowed callee list. The hallucination rate was 100%."
+    },
+    {
+      "task_id": "FT-011",
+      "mode": "full",
+      "category": "symbol_hallucination",
+      "category_description": "Model invents a function/method that doesn't exist in the codebase",
+      "layer_history": [
+        "symbol_check",
+        "symbol_check",
+        "symbol_check",
+        "symbol_check",
+        "symbol_check"
+      ],
+      "layer_summary": {
+        "symbol_check": 5
+      },
+      "iterations_used": 5,
+      "hallucination_rate": 1.0,
+      "explanation": "Task FT-011 failed all 5 attempts at symbol_check. The model consistently generated function calls not present in the CPG's allowed callee list. The hallucination rate was 100%."
+    },
+    {
+      "task_id": "FT-012",
+      "mode": "full",
+      "category": "expected_symbol_miss",
+      "category_description": "Model uses a valid alternative but not the symbol the task requires",
+      "layer_history": [
+        "symbol_check",
+        "symbol_check",
+        "symbol_check",
+        "type_check",
+        "symbol_check"
+      ],
+      "layer_summary": {
+        "symbol_check": 4,
+        "type_check": 1
+      },
+      "iterations_used": 5,
+      "hallucination_rate": 0.8,
+      "explanation": "Task FT-012 failed 4/5 attempts at symbol_check. The model used valid code but not the specific symbol the task required (e.g., print() instead of logging.debug())."
+    },
+    {
+      "task_id": "FT-014",
+      "mode": "full",
+      "category": "type_mismatch",
+      "category_description": "Correct logic but wrong return type or argument type",
+      "layer_history": [
+        "type_check",
+        "type_check",
+        "type_check",
+        "type_check",
+        "type_check"
+      ],
+      "layer_summary": {
+        "type_check": 5
+      },
+      "iterations_used": 5,
+      "hallucination_rate": 0.0,
+      "explanation": "Task FT-014 failed 5/5 attempts at type_check (mypy). The generated code had type annotation mismatches \u2014 likely wrong return type or incompatible argument types."
+    },
+    {
+      "task_id": "FT-015",
+      "mode": "full",
+      "category": "type_mismatch",
+      "category_description": "Correct logic but wrong return type or argument type",
+      "layer_history": [
+        "type_check",
+        "type_check",
+        "type_check",
+        "type_check",
+        "type_check"
+      ],
+      "layer_summary": {
+        "type_check": 5
+      },
+      "iterations_used": 5,
+      "hallucination_rate": 0.0,
+      "explanation": "Task FT-015 failed 5/5 attempts at type_check (mypy). The generated code had type annotation mismatches \u2014 likely wrong return type or incompatible argument types."
+    }
+  ],
+  "latex_table": "\\begin{table}[h]\n\\centering\n\\begin{tabular}{l c l}\n\\toprule\nFailure Category & Count & Representative Task \\\\\n\\midrule\n\\texttt{symbol\\_hallucination} & 6 & FT-003 \\\\\n\\texttt{expected\\_symbol\\_miss} & 1 & FT-012 \\\\\n\\texttt{type\\_mismatch} & 3 & FT-001 \\\\\n\\bottomrule\n\\end{tabular}\n\\caption{Failure analysis of the 10 worst-performing tasks.}\n\\label{tab:failure-analysis}\n\\end{table}"
+}
