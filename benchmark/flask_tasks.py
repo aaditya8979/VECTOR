@@ -305,7 +305,7 @@ FLASK_TASKS = [
     {
         "id":       "FT-026",
         "category": "validation",
-        "file_path": "src/flask/blueprints.py",
+        "file_path": "src/flask/sansio/blueprints.py",
         "func_name": "register",
         "goal":     "raise ValueError if the blueprint name contains a dot character",
         "expected_symbols": ["ValueError"],
@@ -316,7 +316,7 @@ FLASK_TASKS = [
     {
         "id":       "FT-027",
         "category": "timing",
-        "file_path": "src/flask/blueprints.py",
+        "file_path": "src/flask/sansio/blueprints.py",
         "func_name": "record_once",
         "goal":     "log the callback function name at DEBUG level when recording",
         "expected_symbols": ["logging.debug"],
@@ -328,11 +328,11 @@ FLASK_TASKS = [
     # ── testing.py tasks (2) ─────────────────────────────────────────────
     {
         "id":       "FT-028",
-        "category": "validation",
+        "category": "observability",
         "file_path": "src/flask/testing.py",
-        "func_name": "make_test_environ_builder",
-        "goal":     "raise ValueError if the path argument does not start with a forward slash",
-        "expected_symbols": ["ValueError"],
+        "func_name": "session_transaction",
+        "goal":     "log the session key count at DEBUG level when entering a session transaction",
+        "expected_symbols": ["logging.debug"],
         "forbidden_symbols": [],
         "test_guard": "",
         "difficulty": "easy",
@@ -363,14 +363,14 @@ FLASK_TASKS = [
     },
     {
         "id":       "FT-031",
-        "category": "timing",
+        "category": "observability",
         "file_path": "src/flask/wrappers.py",
-        "func_name": "close",
-        "goal":     "log the response status code and content length at DEBUG level when the response is closed",
+        "func_name": "_load_form_data",
+        "goal":     "log the content type and content length at DEBUG level when loading form data",
         "expected_symbols": ["logging.debug"],
         "forbidden_symbols": [],
         "test_guard": "",
-        "difficulty": "medium",
+        "difficulty": "easy",
     },
 
     # ── templating.py + debughelpers.py tasks (2) ────────────────────────
